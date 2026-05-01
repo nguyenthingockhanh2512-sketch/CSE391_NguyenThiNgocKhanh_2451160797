@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Multimedia - Thiết bị Công nghệ</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333; }
+        header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+        .product-gallery { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+        figure { margin: 0; border: 1px solid #ddd; padding: 10px; border-radius: 8px; width: 300px; text-align: center; }
+        figcaption { margin-top: 10px; font-weight: bold; color: #555; }
+        .media-section { margin-bottom: 40px; }
+        h2 { color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <!-- SVG Logo -->
+    <header>
+        <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Một logo hình vuông bo góc đơn giản -->
+            <rect x="10" y="10" width="80" height="80" rx="15" fill="#0056b3" />
+            <circle cx="50" cy="50" r="20" fill="#ffffff" />
+            <circle cx="50" cy="50" r="10" fill="#0056b3" />
+        </svg>
+        <h1>TechGear Store</h1>
+    </header>
+
+    <!-- Hình ảnh sản phẩm (Dùng figure, lazy loading, inline style responsive) -->
+    <section class="media-section">
+        <h2>1. Hình ảnh Sản phẩm Nổi bật</h2>
+        <div class="product-gallery">
+            <figure>
+                <img src="https://images.unsplash.com/photo-1595225476474-87563907a212?w=400&q=80" 
+                     alt="Bàn phím cơ layout 65% với keycap màu xám trắng" 
+                     loading="lazy" 
+                     style="max-width: 100%; height: auto;">
+                <figcaption>Bàn phím cơ Keychron K6</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://images.unsplash.com/photo-1615663245857-ac1eeb536fcb?w=400&q=80" 
+                     alt="Chuột không dây gaming màu đen có đèn LED RGB" 
+                     loading="lazy" 
+                     style="max-width: 100%; height: auto;">
+                <figcaption>Chuột Gaming Logitech G Pro</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80" 
+                     alt="Màn hình cong ultrawide đang hiển thị biểu đồ" 
+                     loading="lazy" 
+                     style="max-width: 100%; height: auto;">
+                <figcaption>Màn hình cong Ultrawide 34 inch</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- Video nhúng từ YouTube -->
+    <section class="media-section">
+        <h2>2. Video Đánh giá (YouTube Embed)</h2>
+        <!-- Dùng thẻ iframe để nhúng video -->
+        <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+    </section>
+
+    <!-- Video Host nội bộ -->
+    <section class="media-section">
+        <h2>3. Video Hướng dẫn Lắp đặt (Local Host)</h2>
+        <!-- Thẻ video có controls, ảnh bìa poster và đa định dạng source -->
+        <video controls poster="https://via.placeholder.com/560x315.png?text=Bấm+để+xem+video" width="560" style="max-width: 100%; height: auto;">
+            <source src="assets/huong_dan.mp4" type="video/mp4">
+            <source src="assets/huong_dan.webm" type="video/webm">
+            Trình duyệt của bạn không hỗ trợ thẻ video HTML5. Vui lòng nâng cấp trình duyệt.
+        </video>
+    </section>
+
+    <!-- Audio Host nội bộ -->
+    <section class="media-section">
+        <h2>4. Nhạc nền Trải nghiệm</h2>
+        <p>Nghe bản nhạc thư giãn trong lúc chọn lựa thiết bị:</p>
+        <audio controls>
+            <source src="assets/nhac_nen.mp3" type="audio/mpeg">
+            <source src="assets/nhac_nen.ogg" type="audio/ogg">
+            Trình duyệt của bạn không hỗ trợ thẻ audio HTML5.
+        </audio>
+    </section>
+
+</body>
+</html>

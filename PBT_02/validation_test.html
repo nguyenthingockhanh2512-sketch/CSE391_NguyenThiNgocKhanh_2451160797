@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm thử Validation - Câu A2</title>
+</head>
+<body>
+    <h2>Kiểm thử Validation (Câu A2)</h2>
+    <!-- Bắt buộc phải có thẻ form -->
+    <form action="#" method="POST">
+        <h3>Trường hợp 1 (Để trống required)</h3>
+        <input type="text" required value=""><br><br>
+
+        <h3>Trường hợp 2 (Sai định dạng email)</h3>
+        <input type="email" value="abc"><br><br>
+
+        <h3>Trường hợp 3 (Vượt quá max)</h3>
+        <input type="number" min="1" max="10" value="15"><br><br>
+
+        <h3>Trường hợp 4 (Sai pattern)</h3>
+        <input type="text" pattern="[0-9]{10}" value="abc123"><br><br>
+
+        <h3>Trường hợp 5 (Chưa đủ minlength)</h3>
+        <input type="password" minlength="8" value="123"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
