@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đặt hàng Hoàn chỉnh</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        tfoot th { text-align: right; }
+        fieldset { margin-bottom: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 5px; }
+        legend { font-weight: bold; color: #d9534f; padding: 0 5px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: inline-block; margin-bottom: 5px; }
+        input[type="text"], input[type="date"], select, textarea { width: 100%; max-width: 400px; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 20px; background-color: #5cb85c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #4cae4c; }
+        meter { width: 200px; height: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>Thanh toán Đơn hàng (Checkout)</h2>
+
+    <form action="#" method="POST">
+
+        <!-- NÂNG CAO 1: Dùng datalist cho ô tìm kiếm sản phẩm -->
+        <div class="form-group">
+            <label for="search_product">Tìm thêm sản phẩm vào giỏ:</label><br>
+            <input list="product_list" id="search_product" name="search_product" placeholder="Nhập tên sản phẩm để tìm nhanh...">
+            <datalist id="product_list">
+                <option value="Tai nghe Bluetooth Sony">
+                <option value="Bàn phím cơ Keychron K6">
+                <option value="Chuột không dây Logitech">
+                <option value="Màn hình Dell Ultrasharp">
+            </datalist>
+        </div>
+
+        <!-- ================= PHẦN 1: GIỎ HÀNG ================= -->
+        <fieldset>
+            <legend>1. Giỏ hàng của bạn</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Bàn phím cơ Keychron K6</td>
+                        <td>1,800,000 đ</td>
+                        <td>1</td>
+                        <td>1,800,000 đ</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Chuột Gaming Logitech G Pro</td>
+                        <td>2,200,000 đ</td>
+                        <td>1</td>
+                        <td>2,200,000 đ</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Lót chuột xịn xò size XL</td>
+                        <td>200,000 đ</td>
+                        <td>2</td>
+                        <td>400,000 đ</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">Tổng cộng:</th>
+                        <!-- NÂNG CAO 2: Dùng output để hiển thị tổng tiền -->
+                        <td><strong><output name="total_price">4,400,000 đ</output></strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </fieldset>
+
+        <!-- ================= PHẦN 2: FORM THANH TOÁN ================= -->
+        <fieldset>
+            <legend>2. Thông tin thanh toán</legend>
+            
+            <div class="form-group">
+                <label>Phương thức thanh toán:</label><br>
+                <input type="radio" id="pay_cod" name="payment_method" value="cod" checked required>
+                <label for="pay_cod" style="font-weight: normal;">Thanh toán khi nhận hàng (COD)</label><br>
+                
+                <input type="radio" id="pay_transfer" name="payment_method" value="transfer">
+                <label for="pay_transfer" style="font-weight: normal;">Chuyển khoản ngân hàng</label><br>
+                
+                <input type="radio" id="pay_wallet" name="payment_method" value="wallet">
+                <label for="pay_wallet" style="font-weight: normal;">Ví điện tử (Momo / ZaloPay)</label>
+            </div>
+
+            <div class="form-group">
+                <label for="promo_code">Mã giảm giá:</label><br>
+                <!-- Pattern yêu cầu chữ SALE và chính xác 4 chữ số -->
+                <input type="text" id="promo_code" name="promo_code" pattern="^SALE[0-9]{4}$" placeholder="VD: SALE2026" title="Bắt đầu bằng chữ SALE, theo sau là 4 chữ số">
+            </div>
+
+            <div class="form-group">
+                <label for="order_notes">Ghi chú đơn hàng (Tùy chọn):</label><br>
+                <textarea id="order_notes" name="order_notes" rows="3" placeholder="Ghi chú thêm về địa chỉ hoặc yêu cầu đặc biệt..."></textarea>
+            </div>
+        </fieldset>
+
+        <!-- ================= PHẦN 3: THÔNG TIN GIAO HÀNG ================= -->
+        <fieldset>
+            <legend>3. Thời gian giao hàng</legend>
+
+            <div class="form-group">
+                <label for="delivery_date">Ngày giao hàng mong muốn:</label><br>
+                <!-- Hôm nay là 01/05/2026 -> min được set là ngày mai 02/05/2026 -->
+                <input type="date" id="delivery_date" name="delivery_date" min="2026-05-02" required>
+            </div>
+
+            <div class="form-group">
+                <label for="delivery_time">Khung giờ giao hàng:</label><br>
+                <select id="delivery_time" name="delivery_time" required>
+                    <option value="">-- Chọn khung giờ --</option>
+                    <option value="morning">Sáng (8h - 12h)</option>
+                    <option value="afternoon">Chiều (14h - 18h)</option>
+                    <option value="evening">Tối (18h - 21h)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="delivery_speed">Thời gian giao hàng cho phép (Số ngày):</label><br>
+                <!-- Dùng inline JS đơn giản để hiển thị số ngày khi kéo thanh trượt -->
+                <input type="range" id="delivery_speed" name="delivery_speed" min="1" max="7" step="1" value="3" oninput="speed_output.value = this.value">
+                <output id="speed_output" style="font-weight: bold; color: #d9534f;">3</output> ngày
+            </div>
+        </fieldset>
+
+        <fieldset style="background-color: #ecfce3; border-color: #faebcc;">
+            <legend style="color: #8a6d3b;">Thành viên TechGear</legend>
+            <div class="form-group">
+                <label for="loyalty_points">Tiến trình hạng Thân thiết (Điểm tích lũy):</label><br>
+                <meter id="loyalty_points" value="750" min="0" max="1000" low="300" high="800" optimum="900" title="750/1000 điểm">75%</meter>
+                <span> 750 / 1000 điểm</span>
+            </div>
+        </fieldset>
+
+        <!-- Nút Submit với aria-label theo chuẩn Accessibility -->
+        <button type="submit" aria-label="Xác nhận đặt hàng">Hoàn tất đặt hàng</button>
+
+    </form>
+
+</body>
+</html>
