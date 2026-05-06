@@ -1,0 +1,30 @@
+<form action ="#" method = "post">
+    <fieldset>
+        <legend>THông tin tài khoản</legend>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name = "email" required 
+        placeholder = "you@email.com">
+
+        <label for="pass">Mật khẩu:</label>
+        <input type="password" id="pass" name = "pass" required 
+        minlength = "8"
+        pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}"
+        titel = "Ít nhất 8 kí tự, gồm chữ hoa, thường, số">
+
+        <label for="phone">SDT:</label>
+        <input type="tel" id="phone" name = "phone" required 
+        pattern ="[0-9].{10}" placehoder ="0359876965">
+        
+        <label for="dob">Ngày sinh:</label>
+        <input type="date" id="dob" name = "dob" 
+    
+    </fieldset>
+
+    
+    <lable>
+        <input type="checkbox" name = "agree" required>
+        Tôi đồng ý điều khoản
+    </lable>
+    <button type = "submit">Đăng kí</button>
+    
+</form>
