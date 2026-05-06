@@ -1,0 +1,47 @@
+.hero {
+    height: 100vh; /* Chiều cao chiếm trọn màn hình thiết bị */
+    display: flex;
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    align-items: center;     /* Căn giữa nội dung theo chiều dọc */
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    /* Hiệu ứng xuất hiện từ từ khi load trang */
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Nút Call to Action */
+.cta-button {
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--color-primary);
+    border-radius: 50px; /* Bo tròn nút kiểu hiện đại */
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Hiệu ứng tương tác khi di chuột vào nút */
+.cta-button:hover {
+    transform: translateY(-5px); /* Nút bay lên nhẹ */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Bóng đổ đậm hơn tạo chiều sâu */
+}
+
+/* Keyframes: Định nghĩa chuyển động trồi lên và mờ dần (Fade In Up) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

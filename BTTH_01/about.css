@@ -1,0 +1,25 @@
+.about-section {
+    padding: 80px 0; /* Tạo khoảng cách trên dưới cho phần này */
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Chia 2 cột: Ảnh chiếm 1 phần, Chữ chiếm 1.5 phần */
+    gap: 3rem; /* Khoảng cách giữa ảnh và chữ */
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 50%; /* Làm ảnh thành hình tròn chuyên nghiệp */
+    border: 5px solid var(--color-primary); /* Thêm viền màu cho ảnh nổi bật */
+}
+
+/* Responsive: Chuyển về 1 cột trên điện thoại */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center; /* Căn giữa chữ trên mobile */
+    }
+}

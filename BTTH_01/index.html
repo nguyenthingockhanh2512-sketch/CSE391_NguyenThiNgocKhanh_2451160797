@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyễn Thị Ngọc Khánh | Portfolio</title>
-    <link rel="stylesheet" href = "css/variables.css">
-    <link rel="stylesheet" href = "css/base.css">
-    <link rel="stylesheet" href = "css/header.css">
-    <link rel="stylesheet" href = "css/hero.css">
+    <head>
+   
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="skills.css">
+</head>
 </head>
 <body>
     <header>
         <div class="container header-wrapper">
-            <<div class="logo">Ngoc<span>Khanh</span></div>
+            <div class="logo">Ngoc<span>Khanh</span></div>
             <input type = "checkbox" id="menu-cb" class="menu-cb">
             <label for="menu-cb" class="menu-icon"><span></span></label>
 
            
-            <nav>/*thanh điều hướng*/ 
+            <nav>
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#portfolio">Portfolio</a>
@@ -29,12 +34,68 @@
         <section class = "hero">
             <div class = "hero-content">
                 <h1>Hi! I'm Ngọc Khánh</h1>
-                <p>Business Analyst | IT student at TLU</p>
+                <p>Information System | IT student at TLU</p>
                 <a href="#portfolio" class="cta-button">View My Work</a>
             </div>
 
-        </section>
-        
+        </section> 
     </main>
+    <!-- Phần About: Giới thiệu bản thân -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image">
+                
+              
+                <img src="khanh.jpg" alt="Profile Photo">
+            </div>
+            <div class="about-content">
+                <h2>About Me</h2>
+                <!-- Class 'lead' giúp đoạn văn nổi bật hơn (chữ to hơn) -->
+                <p class="lead">I'm a second-year student at TLU, Faculty of Information Technology, majoring in Information Systems..</p>
+                <p>Specialized in Business Analyst . Also experienced in HTML SQL, Python, C# and information system design analysis.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Phần Skills: Hiển thị thanh kỹ năng -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+            <!-- Một item kỹ năng bao gồm Tên và Thanh tiến trình -->
+            <div class="skill-item">
+                <span class="skill-name">HTML5</span>
+                <div class="skill-bar">
+                    <!-- Độ rộng 'width' quyết định phần trăm của thanh -->
+                    <div class="skill-progress" style="width: 30%"></div>
+                </div>
+
+                <span class="skill-name">SQL</span>
+                <div class="skill-bar">
+                    
+                    <div class="skill-progress" style="width: 75%"></div>
+                </div>
+
+                <span class="skill-name">Python</span>
+
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+
+                <span class="skill-name">C#</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 70%"></div>
+                </div>
+
+                <span class="skill-name">PTTK</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
 </body>
 </html>

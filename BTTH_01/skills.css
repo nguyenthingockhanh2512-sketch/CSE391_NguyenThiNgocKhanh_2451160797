@@ -1,0 +1,20 @@
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia 2 cột kỹ năng trên desktop */
+    gap: 2rem;
+}
+
+.skill-bar {
+    background: #e2e8f0; /* Màu nền của thanh */
+    border-radius: 10px;
+    height: 12px;
+    overflow: hidden; /* Đảm bảo phần màu bên trong không tràn ra ngoài bo góc */
+    margin-top: 8px;
+}
+
+.skill-progress {
+    height: 100%;
+    /* Gradient từ màu chính sang màu phụ cho thanh tiến trình đẹp hơn */
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transition: width 1s ease-out; /* Hiệu ứng thanh chạy từ từ */
+}
