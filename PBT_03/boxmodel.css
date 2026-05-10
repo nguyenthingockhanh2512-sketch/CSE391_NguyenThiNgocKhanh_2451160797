@@ -1,0 +1,20 @@
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hộp 1: Mặc định */
+.content-box {
+    box-sizing: content-box;
+    background-color: #3498db; 
+}
+
+/* Hộp 2: Border-box */
+.border-box {
+    box-sizing: border-box;
+    background-color: #e74c3c;
+}

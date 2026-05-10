@@ -114,3 +114,51 @@ p.price { color: green; }             /* Rule D */
     Kết quả: Element sẽ có màu Đen (black).
 
     Giải thích: Từ khóa !important không nằm trong thang điểm Specificity thông thường. Nó là một "lệnh ghi đè khẩn cấp". Khi một thuộc tính được đánh dấu !important, nó sẽ phá vỡ mọi quy tắc về ID hay Inline Style để trở thành thuộc tính có độ ưu tiên cao nhất.
+
+CÂU 1B: 
+1. Universal Selector (Selector tổng thể)
+    Ký hiệu: *
+
+    Vị trí trong code: Dòng đầu tiên.
+
+    Mục đích: Chọn tất cả các phần tử trên trang để thiết lập box-sizing: border-box và xóa bỏ margin, padding mặc định của trình duyệt.
+
+2. Element Selector (Selector thẻ)
+    Ký hiệu: body, header, main, img, table, footer...
+
+    Vị trí trong code: Xuất hiện xuyên suốt bài.
+
+    Mục đích: Định dạng trực tiếp vào các thẻ HTML cơ bản (ví dụ: thẻ main được đặt màu nền trắng và căn giữa).
+
+3. ID Selector (Selector định danh)
+    Ký hiệu: #contact
+
+    Vị trí trong code: dòng 67.
+
+    Mục đích: Định dạng riêng biệt cho khối liên hệ.
+
+4. Descendant Selector (Selector hậu duệ)
+    Ký hiệu: nav ul, nav ul li, nav ul li a, table th
+
+    Vị trí trong code: Phần NAVIGATION và TABLE.
+
+    Mục đích: Chỉ định chính xác các phần tử con nằm trong phần tử cha (ví dụ: nav ul li a chỉ chọn các liên kết nằm trong menu điều hướng chứ không chọn các liên kết khác ngoài trang).
+
+5. Pseudo-class Selector (Selector giả lập trạng thái)
+    Ký hiệu: :hover và :nth-child(even)
+
+    Vị trí trong code: Phần navigation và định dạng hàng của bảng.
+
+    Mục đích: * :hover: Tạo hiệu ứng đổi màu khi di chuột vào liên kết hoặc bảng.
+
+                :nth-child(even): Tự động chọn các hàng chẵn trong bảng để tô màu nền khác đi
+
+BÀI 2B: BOX MODEL LAB
+    Hộp 1 (content-box): chiều rộng thực tế = 350 px (đo từ DevTools)
+    Hộp 2 (border-box): chiều rộng thực tế = 300 px (đo từ DevTools)
+
+Giải thích sự khác biệt:
+
+    Với content-box (mặc định), thuộc tính width chỉ áp dụng cho phần nội dung bên trong. Padding và Border được cộng thêm vào ngoài, làm hộp to ra so với dự kiến ban đầu.
+
+    Với border-box, thuộc tính width là kích thước tổng thể cuối cùng của hộp. Trình duyệt tự động trừ đi phần padding và border để tính ra không gian còn lại cho nội dung. Cách này giúp lập trình viên kiểm soát layout chính xác hơn.
