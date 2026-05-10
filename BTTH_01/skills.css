@@ -8,7 +8,7 @@
     background: #e2e8f0; /* Màu nền của thanh */
     border-radius: 10px;
     height: 12px;
-    overflow: hidden; /* Đảm bảo phần màu bên trong không tràn ra ngoài bo góc */
+    overflow: hidden; 
     margin-top: 8px;
 }
 
