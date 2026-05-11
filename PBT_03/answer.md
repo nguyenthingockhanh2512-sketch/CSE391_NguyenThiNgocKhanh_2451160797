@@ -214,5 +214,32 @@ Sử dụng định dạng (ID, Class, Element)
     Kết luận: Vì 1064px > 960px, không gian trong container không đủ để chứa cả hai khối nằm cạnh nhau, nên khối content bị đẩy xuống dòng mới theo quy tắc của float: left.
 
 ***CÂU C2 : CASCADE PUZZLE***
-    1. Sản phẩm A: màu xanh lá, front: 20px;
-    2. Sản phẩm B: màu xanh dương, front: 20px
+  
+**Câu 1:**
+    "Sản phẩm A" (h2 trong card featured)
+    font-size = 20px
+
+    Giải thích: Phần tử này khớp với selector .card .title. Dù nó nằm trong .container (14px), nhưng selector class trực tiếp luôn thắng thuộc tính kế thừa từ cha.
+
+    color = green
+
+    Giải thích: .highlight đi kèm !important, nên nó phá vỡ mọi quy tắc specificity và chiếm quyền ưu tiên cao nhất.
+
+**Câu 2:** 
+    "Mô tả sản phẩm" (p trong card featured)
+    color = blue
+
+    Giải thích: Thẻ <p> này có selector .card p { color: inherit; }. Từ khóa inherit buộc nó phải lấy màu từ phần tử cha trực tiếp của nó là .card. Mà .card có quy tắc .card { color: blue; }. Do đó, nó có màu xanh dương.
+
+**Câu 3:** 
+    "Sản phẩm B" (h2 trong card thứ hai)
+    font-size = 20px
+    Giải thích: Tương tự câu 1, selector .card .title quy định kích thước này.
+
+    color = bule
+    Giải thích: Thẻ h2 này không khớp với #featured. Selector duy nhất khớp về màu sắc là kế thừa từ .card. Vậy color = blue.
+
+**Câu 4:**
+    "Mô tả sản phẩm B" (p.highlight)
+    color = green
+    Giải thích: class .highlight có !important đã ghi đè lên toàn bộ các quy tắc khác, kể cả quy tắc viết trực tiếp cho thẻ con
