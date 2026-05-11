@@ -1,4 +1,4 @@
-CÂU 1: 3 CÁCH NHÚNG CSS
+***CÂU 1: 3 CÁCH NHÚNG CSS***
 
 Tài liệu tham chiếu: chương 08
 **Cách 1: Inline CSS**
@@ -38,7 +38,7 @@ Tài liệu tham chiếu: chương 08
     *   **Inline CSS** có độ cụ thể cao nhất vì nó gắn chặt vào phần tử.
     *   **Internal và External** được coi là ngang hàng về cấp độ. Do đó, trình duyệt sẽ đọc từ trên xuống dưới; thuộc tính nào được khai báo sau cùng sẽ ghi đè lên các thuộc tính đã khai báo trước đó.
 
-CÂU A2:CSS SELECTORS - DỰ ĐOÁN KẾT QUẢ
+***CÂU A2:CSS SELECTORS - DỰ ĐOÁN KẾT QUẢ***
     
     1. h1                           → Chọn: Shop TLU
     2. .price                       → Chọn: 25.990.000đ và 45.990.000đ
@@ -49,10 +49,10 @@ CÂU A2:CSS SELECTORS - DỰ ĐOÁN KẾT QUẢ
     7. a[href="/"]                  → Chọn: Home
     8. .top-bar.dark h1             → Chọn: Shop TLU
 
-CÂU A3: BOX MODEL - TÍNH TOÁN KÍCH THƯỚC
+***CÂU A3: BOX MODEL - TÍNH TOÁN KÍCH THƯỚC***
 Tài liệu tham chiếu: chương 11(Box Model)
 
-    /* Trường hợp 1: content-box (mặc định) */
+**Trường hợp 1: content-box (mặc định)**
     .box-1 {
         width: 400px;
         padding: 20px;
@@ -62,7 +62,7 @@ Tài liệu tham chiếu: chương 11(Box Model)
     → Chiều rộng hiển thị = 400+ 20x2 + 5x2 = 450px
     → Không gian chiếm trên trang = 450 + 10x2 = 470px
 
-    /* Trường hợp 2: border-box */
+**Trường hợp 2: border-box**
     .box-2 {
         box-sizing: border-box;
         width: 400px;
@@ -74,7 +74,7 @@ Tài liệu tham chiếu: chương 11(Box Model)
     → Kích thước content thực tế = 400px - 40px - 10px = 350px
     → Không gian chiếm trên trang = 400 + 10x2 = 420px
 
-    /* Trường hợp 3: Margin collapse */
+**Trường hợp 3: Margin collapse**
     .box-a { margin-bottom: 25px; }
     .box-b { margin-top: 40px; }
     → Khoảng cách giữa box-a và box-b = 40px
@@ -82,7 +82,7 @@ Tài liệu tham chiếu: chương 11(Box Model)
 
 **Nâng cao**: khi .box-a có margin-bottom: -10px và .box-b có margin-top: 40px, khoảng cách = 40 +(-10) = 30px
 
-CÂU 4: SPECIFICITY (ĐỘ ƯU TIÊN)
+***CÂU 4: SPECIFICITY (ĐỘ ƯU TIÊN)***
 
 p { color: black; }                    /* Rule A */
 .price { color: blue; }               /* Rule B */
@@ -115,7 +115,7 @@ p.price { color: green; }             /* Rule D */
 
     Giải thích: Từ khóa !important không nằm trong thang điểm Specificity thông thường. Nó là một "lệnh ghi đè khẩn cấp". Khi một thuộc tính được đánh dấu !important, nó sẽ phá vỡ mọi quy tắc về ID hay Inline Style để trở thành thuộc tính có độ ưu tiên cao nhất.
 
-CÂU 1B: 
+***CÂU 1B:*** 
 1. Universal Selector (Selector tổng thể)
     Ký hiệu: *
 
@@ -153,12 +153,66 @@ CÂU 1B:
 
                 :nth-child(even): Tự động chọn các hàng chẵn trong bảng để tô màu nền khác đi
 
-BÀI 2B: BOX MODEL LAB
+***BÀI 2B: BOX MODEL LAB***
     Hộp 1 (content-box): chiều rộng thực tế = 350 px (đo từ DevTools)
     Hộp 2 (border-box): chiều rộng thực tế = 300 px (đo từ DevTools)
 
-Giải thích sự khác biệt:
+**Giải thích sự khác biệt:**
 
     Với content-box (mặc định), thuộc tính width chỉ áp dụng cho phần nội dung bên trong. Padding và Border được cộng thêm vào ngoài, làm hộp to ra so với dự kiến ban đầu.
 
     Với border-box, thuộc tính width là kích thước tổng thể cuối cùng của hộp. Trình duyệt tự động trừ đi phần padding và border để tính ra không gian còn lại cho nội dung. Cách này giúp lập trình viên kiểm soát layout chính xác hơn.
+
+***BÀI 3B: SPECIFICITY BATTLE***
+
+1. Liệt kê 10 rules + specificity score:
+Sử dụng định dạng (ID, Class, Element)
+
+    p: (0, 0, 1)
+
+    body p: (0, 0, 2)
+
+    .text: (0, 1, 0)
+
+    p.text: (0, 1, 1)
+
+    .text.highlight: (0, 2, 0)
+
+    p.text.highlight: (0, 2, 1)
+
+    #demo: (1, 0, 0)
+
+    p#demo: (1, 0, 1)
+
+    #demo.text: (1, 1, 0)
+
+    p#demo.text: (1, 1, 1)
+
+2. Element cuối cùng hiển thị màu gì? Tại sao?
+
+    Kết quả: Màu Đỏ (red).
+
+    Tại sao: Rule p#demo.text có điểm specificity cao nhất (1, 1, 1). Trình duyệt sẽ ưu tiên selector nào có nhiều ID nhất, sau đó đến Class và cuối cùng là Element. Vì (1,1,1) lớn hơn tất cả các bộ số còn lại nên nó "thắng".
+
+4. Thay đổi thứ tự rules trong CSS file. Kết quả có đổi không? Giải thích.
+
+    Kết quả: KHÔNG ĐỔI.
+
+    Giải thích: Thứ tự viết code (Cascading) chỉ có tác dụng khi hai selector có cùng điểm specificity. Trong trường hợp này, vì các rule đều có điểm số khác nhau, trình duyệt sẽ luôn chọn rule có điểm cao nhất bất kể nó nằm ở đầu hay cuối file CSS.
+
+***CÂU C1: DEBUG CSS LAYOUT***
+
+**1.Tính chiều rộng thực tế**
+    sidebar= 300 + 20x2 + 1x2 = 342px;
+    content= 660 + 30x2 + 1x2 = 722px;
+
+**2.Giải thích**
+    Layout bị vỡ vì tổng chiều rộng thực tế của hai khối lớn hơn chiều rộng của container.
+    Tổng chiều rộng 2 khối: 342 + 722 = \1064px
+    Chiều rộng Container:960px
+
+    Kết luận: Vì 1064px > 960px, không gian trong container không đủ để chứa cả hai khối nằm cạnh nhau, nên khối content bị đẩy xuống dòng mới theo quy tắc của float: left.
+
+***CÂU C2 : CASCADE PUZZLE***
+    1. Sản phẩm A: màu xanh lá, front: 20px;
+    2. Sản phẩm B: màu xanh dương, front: 20px
