@@ -1,0 +1,46 @@
+.contact-section { padding: 80px 0; }
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Info chiếm 1 phần, Form chiếm 1.5 phần */
+    gap: 4rem;
+}
+
+/* Kiểu dáng cho Input và Textarea */
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0; /* Màu viền mặc định nhẹ nhàng */
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Validation UI: Hiệu ứng khi người dùng click vào ô nhập liệu (Focus) */
+.form-group input:focus, .form-group textarea:focus {
+    outline: none; /* Xóa viền đen mặc định của trình duyệt */
+    border-color: var(--color-primary); /* Đổi viền sang màu tím thương hiệu */
+    /* Thêm một lớp bóng mờ (Glow) xung quanh để nhấn mạnh */
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.submit-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px); /* Hiệu ứng nút nhích lên khi hover */
+}
+
+/* Responsive: Chuyển về 1 cột trên mobile */
+@media (max-width: 768px) {
+    .contact-wrapper { grid-template-columns: 1fr; }
+}
