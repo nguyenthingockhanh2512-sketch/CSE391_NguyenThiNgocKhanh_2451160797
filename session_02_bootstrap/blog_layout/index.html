@@ -12,14 +12,17 @@
     <div class="container">
         <div class="row">
             <!-- Main Content (8 columns) -->
-            <div class="col-lg-8">
+ <!--CỘT TRÁi--><div class="col-lg-8">
                 <!-- Blog Post Card 1 -->
-                  <article class="card mb-4">
+                 <!--card: Tạo khung trắng, viền mảnh chứa nội dung-->
+                  <article class="card mb-4"><!-- mb-4: Margin bottom mức 4 để các bài viết cách nhau ra -->
                     <img src="image/periodTracker.png" class="card-img-top" alt="Shop Brand Bag">
-                    <div class="card-body">
+                    <div class="card-body p-4"><!--Tạo khoảng cách từ nội dung đến viền card-->
+
+                        <!-- [Badge] Nhãn nhỏ để phân loại công nghệ -->
                         <span class="badge bg-primary">HTML + CSS + JS</span>
                         <h3 class="card-title mt-2">Period Tracker</h3>
-                        <p class="card-text text-muted">
+                        <p class="card-text text-muted"> <!--text-muted: tạo nội dung phụ-->
                             <small>By Author • 5 min read</small>
                         </p>
                         <p class="card-text">This is a page for preiod tracker.</p>
@@ -52,10 +55,93 @@
                         <a href="https://www.e-learningforkids.org/" target = "_blank" class="btn btn-outline-primary">Read More</a>
                     </div>
                 </article>
+                <!-- PHẦN BÌNH LUẬN (Đặt trong col-lg-8) -->
+            <div class="mt-5 p-4 bg-white rounded shadow-sm">
+                <h4 class="mb-4 fw-bold">Comments (3)</h4>
+
+                <!-- 1. Form để lại bình luận -->
+                <div class="card mb-5 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Leave a Comment</h5>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="email@example.com">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Comment</label>
+                                <textarea class="form-control" rows="3" placeholder="Write your message here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary px-4">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2. Hiển thị các bình luận đã có -->
+                <div class="comments-list">
+                    
+                    <!-- Bình luận Cha 1 -->
+                    <div class="comment-item mb-4">
+                        <div class="d-flex">
+                            <!-- Avatar -->
+                            <img src="https://i.pravatar.cc/150?u=1" class="rounded-circle me-3 avatar-main" alt="Avatar">
+                            
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="mb-0 fw-bold">Nguyễn Văn A</h6>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                                <p class="text-secondary">Dự án Smart Budget của bạn rất thực tế, Machine Learning áp dụng vào đây quá hợp lý luôn!</p>
+                                <button class="btn btn-sm btn-link p-0 text-decoration-none fw-bold">
+                                    <i class="bi bi-reply-fill"></i> Reply
+                                </button>
+
+                                <!-- Bình luận Con (Reply) -->
+                                <div class="comment-reply mt-3 ps-3 border-start border-3">
+                                    <div class="d-flex">
+                                        <img src="https://i.pravatar.cc/150?u=hanh" class="rounded-circle me-3 avatar-reply" alt="Avatar">
+                                        <div class="flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <h6 class="mb-0 fw-bold">Ngọc Hạnh (Author)</h6>
+                                                <small class="text-muted">1 hour ago</small>
+                                            </div>
+                                            <p class="text-secondary mb-1">Cảm ơn bạn nhé! Mình đang cố gắng tối ưu thêm mô hình dự báo chi tiêu.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bình luận Cha 2 -->
+                    <div class="comment-item mb-4">
+                        <div class="d-flex">
+                            <img src="https://i.pravatar.cc/150?u=3" class="rounded-circle me-3 avatar-main" alt="Avatar">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="mb-0 fw-bold">Lê Minh Tâm</h6>
+                                    <small class="text-muted">5 hours ago</small>
+                                </div>
+                                <p class="text-secondary">Phần giao diện Kid Learning Mobile nhìn bắt mắt quá, dùng thư viện gì vậy bạn?</p>
+                                <button class="btn btn-sm btn-link p-0 text-decoration-none fw-bold">
+                                    <i class="bi bi-reply-fill"></i> Reply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             </div>
 
             <!-- Sidebar (4 columns) -->
-            <div class="col-lg-4">
+<!--CỘT PHẢI--><div class="col-lg-4">
                 <!-- Sticky sidebar: Dính lại khi cuộn trang -->
                 <div class="sticky-top pt-4" style="top: 20px; z-index: 10;">
                     
@@ -65,7 +151,7 @@
                             <h5 class="card-title">Search</h5>
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search...">
-                                <button class="btn btn-primary" type="button">Go</button>
+                                <button class="btn btn-success" type="button">Go</button>
                             </div>
                         </div>
                     </div>
@@ -120,6 +206,8 @@
                             <h5 class="mb-0">Skills & Tech</h5>
                         </div>
                         <div class="card-body">
+                            <!-- flex-wrap: Nếu có quá nhiều tag, chúng sẽ tự động xuống dòng thay vì tràn ra ngoài -->
+                            <!-- gap-2: Tạo khoảng cách đều 0.5rem giữa các tag -->
                             <div class="d-flex flex-wrap gap-2">
                                 <span class="badge bg-secondary text-white">React</span>
                                 <span class="badge bg-secondary text-white">Node.js</span>

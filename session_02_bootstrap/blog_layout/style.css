@@ -45,3 +45,25 @@ body {
     top: 100px; /* Below sticky header */
     z-index: 1;
 }
+.comment img.rounded-circle {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.comment.reply img.rounded-circle {
+    width: 40px;
+    height: 40px;
+}
+.comment.reply {
+    border-left: 3px solid #e2e8f0;
+    padding-left: 1rem;
+}
+.btn-link {
+    color: var(--bs-primary);
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: darken(var(--bs-primary), 10%);
+}
