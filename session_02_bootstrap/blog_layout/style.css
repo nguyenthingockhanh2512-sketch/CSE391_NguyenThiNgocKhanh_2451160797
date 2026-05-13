@@ -7,7 +7,21 @@
         z-index: 1000;
     }
 }
+body {
+    background: linear-gradient(135deg, #a1b8e3 0%, #e8eef7 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+.card-header {
+    background-color: #f8e0f8 !important; /* Xanh xám cực nhạt */
+    border-bottom: 1px solid #e2e8f0;
+}
 
+.card-header h5 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
 /* Bo góc cho các khung (Card) nhìn cho hiện đại */
 .card {
     border-radius: 12px;
