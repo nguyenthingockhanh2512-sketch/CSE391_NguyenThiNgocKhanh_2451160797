@@ -1,0 +1,33 @@
+/* Làm cho sidebar dính lại trên màn hình máy tính */
+@media (min-width: 992px) {
+    .sticky-top-custom {
+        position: -webkit-sticky; /* Hỗ trợ trình duyệt cũ */
+        position: sticky;
+        top: 20px; /* Cách mép trên màn hình 20px khi cuộn */
+        z-index: 1000;
+    }
+}
+
+/* Bo góc cho các khung (Card) nhìn cho hiện đại */
+.card {
+    border-radius: 12px;
+}
+
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.card {
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border-radius: 12px;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Khi di chuột vào bài viết sẽ hơi nổi lên */
+}
+.sticky-top {
+    position: sticky;
+    top: 100px; /* Below sticky header */
+    z-index: 1;
+}
