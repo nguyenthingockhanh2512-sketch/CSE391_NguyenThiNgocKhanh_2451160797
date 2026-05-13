@@ -1,3 +1,8 @@
+:root {
+    --bs-primary: #f2bacd;        /* Teal 500 */
+    --bs-primary-rgb: 20, 184, 166;
+    --bs-secondary: #64748b;      /* Slate 500 */
+}
 /* Làm cho sidebar dính lại trên màn hình máy tính */
 @media (min-width: 992px) {
     .sticky-top-custom {
@@ -94,4 +99,26 @@ body {
 
 .btn-link:hover {
     color: #0d6efd; /* Đổi sang màu xanh khi di chuột vào */
+}
+/* Add custom spacing class */
+.py-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Custom gap for grids */
+.gap-4 { gap: 2rem; }
+/* Make cards rounder */
+.card {
+    border-radius: 16px;
+}
+
+/* Make buttons less rounded */
+.btn {
+    border-radius: 8px;
+}
+
+/* Make inputs more rounded */
+.form-control, .form-select {
+    border-radius: 10px;
 }
