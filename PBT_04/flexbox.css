@@ -1,0 +1,178 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: sans-serif; 
+    background-color: #f8fafc; 
+    color: #1e293b; 
+}
+
+/* =========================================
+   PHẦN 1: NAVBAR (Thực hành Flexbox 1 chiều ngang)
+   ========================================= */
+.navbar {
+    /* 1. Kích hoạt môi trường Flexbox cho thanh điều hướng */
+    display: flex; 
+    
+    /* 2. justify-content xử lý trục ngang (Main axis).
+       space-between sẽ đẩy Logo sát lề trái, Auth sát lề phải, Menu ở giữa */
+    justify-content: space-between; 
+    
+    /* 3. align-items xử lý trục dọc (Cross axis).
+       center giúp text của Logo, Menu và Nút bấm nằm trên một đường thẳng ngang */
+    align-items: center; 
+    
+    background-color: white;
+    padding: 15px 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.logo { 
+    font-size: 22px; 
+    font-weight: bold; 
+    color: #4f46e5; 
+}
+
+.nav-menu {
+    /* Biến cụm thẻ <ul> thành một Flex container nội bộ để dàn hàng ngang các thẻ <li> */
+    display: flex; 
+    gap: 30px; /* Tạo khoảng cách đều nhau 30px giữa các menu item */
+    list-style: none;
+}
+
+.nav-menu a { 
+    text-decoration: none; 
+    color: #475569; 
+    font-weight: 500; 
+}
+
+.nav-menu a:hover { 
+    color: #4f46e5; 
+    text-decoration: underline; /* Yêu cầu hover đổi màu + gạch chân */
+}
+
+.nav-auth {
+    /* Nhóm 2 nút bấm Login/Register bằng Flexbox */
+    display: flex; 
+    gap: 10px; 
+}
+
+.nav-auth button { 
+    padding: 8px 16px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    border: none; 
+    font-weight: bold; 
+}
+
+.btn-login { 
+    background: transparent; 
+    color: #4f46e5; 
+    border: 1px solid #4f46e5; 
+}
+
+.btn-register { 
+    background: #4f46e5; 
+    color: white; 
+}
+
+/* =========================================
+   PHẦN 2: LƯỚI CARDS (Thực hành Flexbox lưới đa dòng)
+   ========================================= */
+.page-wrapper { 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+
+h2 { 
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+
+/* -- Container bọc ngoài toàn bộ các card -- */
+.product-flex-grid {
+    display: flex; 
+    
+    /* RẤT QUAN TRỌNG: Nếu không có wrap, 8 thẻ card sẽ bị bóp méo dính chặt trên 1 hàng.
+       wrap cho phép các thẻ bị dư tự động rớt xuống hàng tiếp theo. */
+    flex-wrap: wrap; 
+    
+    /* Tạo khoảng cách 20px giữa các thẻ (áp dụng cho cả khe dọc và khe ngang) */
+    gap: 20px;       
+}
+
+/* -- Từng thẻ sản phẩm (Item của lưới lớn, đồng thời là Container của lưới nhỏ) -- */
+.product-card {
+    /* flex: grow shrink basis.
+       0: Không cho phép tự phình to hơn kích thước quy định.
+       0: Không cho phép tự co lại nhỏ hơn kích thước quy định.
+       calc(25% - 15px): Chia 4 cột. Vì 1 hàng có 4 thẻ nên có 3 khoảng gap (3 x 20px = 60px). 
+       Lấy 60px chia cho 4 thẻ = 15px. Ta lấy 25% trừ đi 15px sẽ ra kích thước chuẩn xác. */
+    flex: 0 0 calc(25% - 15px); 
+    
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    
+    /* CHÌA KHÓA DEBUG: Biến chính bản thân thẻ Card thành 1 khối Flexbox chạy theo trục dọc (column) 
+       để dễ dàng quản lý vị trí các thẻ con (ảnh, text, nút) bên trong nó. */
+    display: flex;
+    flex-direction: column; 
+    
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hiệu ứng hover card: Nảy lên trên 5px và tăng bóng đổ */
+.product-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
+}
+
+.card-img {
+    height: 150px; 
+    background: #f1f5f9; 
+    border-radius: 8px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 40px; 
+    margin-bottom: 15px;
+}
+
+.card-name { 
+    font-size: 15px; 
+    margin-bottom: 10px; 
+    line-height: 1.4;
+}
+
+.card-price { 
+    color: #ef4444; 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+}
+
+/* -- Nút mua: Kỹ thuật luôn dính sát đáy Card -- */
+.btn-buy {
+    /* CHÌA KHÓA DEBUG: Nhờ thẻ cha (.product-card) đang là flex-direction: column,
+       margin-top: auto sẽ tự động chiếm toàn bộ không gian trống phía trên nút bấm,
+       tạo ra một lực đẩy ép nút bấm luôn bám chặt xuống đáy dưới cùng của Card, 
+       bất kể tiêu đề (card-name) ở trên có dài 1 dòng hay 3 dòng. */
+    margin-top: auto; 
+    
+    padding: 10px; 
+    background: #1e293b; 
+    color: white; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-buy:hover { 
+    background: #4f46e5; 
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài B2 - Flexbox Navigation & Cards</title>
+    <link rel="stylesheet" href="flexbox.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         PHẦN 1: NAVBAR NGANG (FLEXBOX 1 CHIỀU)
+         ========================================== -->
+    <nav class="navbar">
+        <div class="logo">🛍️ Ngọc Khánh shop</div>
+        
+        <ul class="nav-menu">
+            <li><a href="#">Trang Chủ</a></li>
+            <li><a href="#">Sản Phẩm</a></li>
+            <li><a href="#">Về Chúng Tôi</a></li>
+        </ul>
+        
+        <div class="nav-auth">
+            <button class="btn-login">Đăng Nhập</button>
+            <button class="btn-register">Đăng Ký</button>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         PHẦN 2: LƯỚI PRODUCT CARDS (FLEXBOX ĐA DÒNG)
+         ========================================== -->
+    <main class="page-wrapper">
+        <h2>🔥 Sản Phẩm Flexbox</h2>
+        
+        <div class="product-flex-grid">
+            
+            <!-- Card 1 -->
+            <div class="product-card">
+                <div class="card-img">⚡</div>
+                <h3 class="card-name">Tai nghe Gaming Pro X</h3>
+                <p class="card-price">2.890.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 2: Cố tình làm tiêu đề dài ra 2 dòng để test tính năng "nút dính đáy" -->
+            <div class="product-card">
+                <div class="card-img">🔋</div>
+                <h3 class="card-name">Sạc Dự Phòng Siêu Nhanh 20000mAh 65W Kèm Cáp</h3>
+                <p class="card-price">950.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="product-card">
+                <div class="card-img">⌨️</div>
+                <h3 class="card-name">Bàn Phím Cơ Custom Gasket</h3>
+                <p class="card-price">1.650.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="product-card">
+                <div class="card-img">🖱️</div>
+                <h3 class="card-name">Chuột Ergonomic Không Dây</h3>
+                <p class="card-price">540.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="product-card">
+                <div class="card-img">🎙️</div>
+                <h3 class="card-name">Microphone Podcast USB-C</h3>
+                <p class="card-price">2.100.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="product-card">
+                <div class="card-img">💡</div>
+                <h3 class="card-name">Đèn Treo Màn Hình Bảo Vệ Mắt</h3>
+                <p class="card-price">890.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="product-card">
+                <div class="card-img">🔊</div>
+                <h3 class="card-name">Loa Bluetooth Chống Nước IPX7</h3>
+                <p class="card-price">1.450.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="product-card">
+                <div class="card-img">🎛️</div>
+                <h3 class="card-name">Bàn Di Chuột Da Sợi Carbon</h3>
+                <p class="card-price">320.000 đ</p>
+                <button class="btn-buy">Mua Ngay</button>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
