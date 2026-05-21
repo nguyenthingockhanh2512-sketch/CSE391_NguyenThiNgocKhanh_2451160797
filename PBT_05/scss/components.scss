@@ -1,0 +1,40 @@
+// ĐIỂM QUAN TRỌNG: Ứng dụng Nesting và gọi Mixins
+.card {
+    background: white;
+    padding: $spacing-md;
+    border-radius: 8px;
+    text-align: center;
+    @include card-shadow; // Gọi mixin đổ bóng
+
+    // Nesting 1: Class con bên trong
+    .card-image {
+        max-width: 100%;
+        border-radius: 4px;
+    }
+
+    // Nesting 2: Class con bên trong
+    .card-title {
+        color: $primary-color;
+        margin-top: $spacing-md;
+    }
+
+    // Nesting 3: Trạng thái & class cùng cấp (Dùng &)
+    &.featured {
+        border: 2px solid $accent-color;
+    }
+}
+
+// Lưới sản phẩm dùng Mixin breakpoint
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; // Mobile 1 cột
+    gap: $spacing-md;
+
+    @include respond-to($breakpoint-tablet) {
+        grid-template-columns: repeat(2, 1fr); // Tablet 2 cột
+    }
+
+    @include respond-to($breakpoint-desktop) {
+        grid-template-columns: repeat(4, 1fr); // Desktop 4 cột
+    }
+}
