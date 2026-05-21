@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <!-- ĐIỂM QUAN TRỌNG: Bắt buộc phải có thẻ meta viewport để trang web co giãn trên mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 - Responsive Product Page</title>
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">SmartBudget Shop</div>
+        
+        <!-- Mẹo dùng Checkbox để làm Hamburger Menu không cần Javascript -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="hamburger">☰</label>
+        
+        <nav class="nav-menu">
+            <a href="#">Trang chủ</a>
+            <a href="#">Sản phẩm</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Liên hệ</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Bộ lọc</h3>
+            <ul>
+                <li>Điện thoại</li>
+                <li>Laptop</li>
+                <li>Phụ kiện</li>
+            </ul>
+        </aside>
+
+        <!-- Product Grid (Cần ít nhất 8 cards) -->
+        <main class="product-grid">
+            <div class="card"><img src="image/ip16 titan.png" alt="Product"><h3>Iphone 16 màu titan</h3></div>
+            <div class="card"><img src="image/ip17 pro max.png" alt="Product"><h3>Iphone 17 Pro max</h3></div>
+            <div class="card"><img src="image/ip17.png" alt="Product"><h3>Iphone 17</h3></div>
+            <div class="card"><img src="image/ipAir.png" alt="Product"><h3>Iphone Air</h3></div>
+            <div class="card"><img src="image/ảnh khánh.png" alt="Product"><h3>Chủ Shop</h3></div>
+            <div class="card"><img src="image/ip17e.png" alt="Product"><h3>Iphone 17e</h3></div>
+            <div class="card"><img src="image/ip16.png" alt="Product"><h3>Iphone 16</h3></div>
+            <div class="card"><img src="image/phukien.png" alt="Product"><h3>Phụ kiện Iphone</h3></div>
+        </main>
+
+        <!-- Ads Bar -->
+        <aside class="ads-bar">
+            <div class="ad">Quảng cáo khuyến mãi!</div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Responsive Store - Ngọc Hạnh</p>
+    </footer>
+</body>
+</html>
