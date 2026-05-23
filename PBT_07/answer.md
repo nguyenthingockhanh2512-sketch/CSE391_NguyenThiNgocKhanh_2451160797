@@ -115,87 +115,6 @@ var html = "<div class=\"card\">" +
     "</div>";
 ```
 
----
-
-### Bài B2 (15đ) — Xử lý dữ liệu sinh viên
-
-Tạo file `student_data.js`:
-
-Cho mảng dữ liệu:
-
-```javascript
-const students = [
-    { name: "An", math: 8, physics: 7, cs: 9, gender: "M" },
-    { name: "Bình", math: 6, physics: 9, cs: 7, gender: "F" },
-    { name: "Chi", math: 9, physics: 6, cs: 8, gender: "F" },
-    { name: "Dũng", math: 5, physics: 5, cs: 6, gender: "M" },
-    { name: "Em", math: 10, physics: 8, cs: 9, gender: "F" },
-    { name: "Phong", math: 3, physics: 4, cs: 5, gender: "M" },
-    { name: "Giang", math: 7, physics: 7, cs: 7, gender: "F" },
-    { name: "Huy", math: 4, physics: 6, cs: 3, gender: "M" },
-];
-```
-
-Viết code thực hiện (KHÔNG dùng thư viện, chỉ loops + if/else):
-
-1. Tính **điểm trung bình** (math×0.4 + physics×0.3 + cs×0.3) cho mỗi sinh viên
-2. Xếp loại: ≥8.0 Giỏi, ≥6.5 Khá, ≥5.0 Trung bình, <5.0 Yếu
-3. In bảng kết quả:
-   ```
-   | STT | Tên    | TB   | Xếp loại    |
-   |-----|--------|------|-------------|
-   | 1   | An     | 8.0  | Giỏi        |
-   | 2   | Bình   | 7.2  | Khá         |
-   ...
-   ```
-4. Đếm số SV mỗi xếp loại
-5. Tìm SV có điểm TB cao nhất và thấp nhất
-6. Tính điểm TB toàn lớp cho từng môn
-7. **Bonus:** Tính điểm TB theo giới tính
-
-### Bài B3 (15đ) — Mini Game: Đoán số
-
-Tạo file `guess_number.html` + `guess.js`:
-
-Viết game đoán số **chạy trên browser** (dùng `prompt()` và `alert()`):
-
-1. Máy random 1 số từ 1-100
-2. User nhập số, máy trả lời "Cao hơn" / "Thấp hơn" / "Đúng rồi!"
-3. Đếm số lần đoán
-4. Sau khi đoán đúng, hiển thị: "Bạn đoán đúng sau X lần!"
-5. **Giới hạn 7 lần đoán** — Hết lượt → thua, hiển thị đáp án
-
-**Yêu cầu thêm:**
-- Validate input: Chỉ chấp nhận số 1-100
-- Nếu user nhập cùng số 2 lần → cảnh báo "Bạn đã đoán số này rồi!"
-
-### Bài B4 (10đ) — FizzBuzz nâng cao
-
-Tạo file `fizzbuzz.js`:
-
-Classic FizzBuzz + biến thể:
-
-```javascript
-// Version 1: Classic
-// In 1-100. Chia hết 3 → "Fizz", chia hết 5 → "Buzz", 
-// chia hết cả 2 → "FizzBuzz"
-
-// Version 2: Custom
-// Viết hàm customFizzBuzz(n, rules) 
-// rules = mảng [{ divisor: 3, word: "Fizz" }, { divisor: 5, word: "Buzz" }, ...]
-// Hàm phải hoạt động với BẤT KỲ bộ rules nào
-
-// Test:
-customFizzBuzz(30, [
-    { divisor: 3, word: "Fizz" },
-    { divisor: 5, word: "Buzz" },
-    { divisor: 7, word: "Jazz" }
-]);
-// → 21 = "FizzJazz", 15 = "FizzBuzz", 35 = "BuzzJazz", 105 = "FizzBuzzJazz"
-```
-
----
-
 ## PHẦN C — SUY LUẬN (20 điểm)
 
 ### Câu C1 (10đ) — Debug JavaScript
@@ -217,7 +136,8 @@ function tinhGiaGiamGia(giaBan, phanTramGiam) {
     
     return giaSauGiam
 }
-
+Dòng lỗi: if (giaSauGiam = 0) 
+Cách sửa: Đổi thành  ===: if (giaSauGiam === 0).
 // Test
 const gia = tinhGiaGiamGia("100000", 20)
 console.log("Giá sau giảm: " + gia + "đ")
@@ -230,9 +150,15 @@ for (var i = 0; i < 5; i++) {
         console.log("Item " + i)
     }, 1000)
 }
-```
+Dòng lỗi: const gia = tinhGiaGiamGia("100000", 20)
+Cách sửa: Truyền vào kiểu số 100000 hoặc dùng Number()
 
-Liệt kê lỗi + giải thích + cách sửa. Có 1 lỗi "ẩn" liên quan đến `var` trong vòng lặp — giải thích tại sao và sửa bằng `let`.
+Dòng lỗi: return "Phần trăm giảm không hợp lệ" và return giaSauGiam
+Cách sửa: Thêm dấu ; vào cuối tất cả câu lệnh và chuyển đổi toàn bộ var trong hàm thành let hoặc const.
+
+Dòng lỗi: Hàm chỉ kiểm tra phanTramGiam mà bỏ qua giaBan
+Cách sửa: Thêm điều kiện xác thực if (giaBan < 0).
+```
 
 ### Câu C2 (10đ) — Bài toán thực tế
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Hóa Đơn Nhà Hàng</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; padding: 40px 20px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        
+        .form-container, .receipt-container { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 450px; }
+        h3 { color: #2c3e50; margin-bottom: 20px; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        
+        .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 15px 0; }
+        .checkbox-group input { width: auto; }
+        
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; color: #fff; transition: 0.2s; }
+        .btn-primary { background: #3498db; }
+        .btn-primary:hover { background: #2980b9; }
+        .btn-success { background: #2ecc71; margin-bottom: 15px; }
+        .btn-success:hover { background: #27ae60; }
+
+        /* Danh sách món ăn tạm thời */
+        .item-list { background: #f8f9fa; border: 1px solid #eee; border-radius: 4px; padding: 10px; min-height: 80px; max-height: 150px; overflow-y: auto; margin-bottom: 15px; font-size: 13px; }
+        .item-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed #eee; }
+
+        /* Khung Hóa Đơn Console dạng Text */
+        .receipt-output { font-family: 'Courier New', Courier, monospace; white-space: pre; background: #2c3e50; color: #f1c40f; padding: 20px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.5; font-weight: bold; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+
+    <!-- KHU VỰC NHẬP DỮ LIỆU ĐẦU VÀO -->
+    <div class="form-container">
+        <h3><i class="fa-solid fa-utensils"></i> Nhập Thông Tin Gọi Món</h3>
+        
+        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 15px; background: #fff;">
+            <div class="form-group">
+                <label>Tên món ăn:</label>
+                <input type="text" id="food-name" placeholder="Ví dụ: Phở bò">
+            </div>
+            <div class="form-group">
+                <label>Giá bán (VNĐ):</label>
+                <input type="number" id="food-price" placeholder="Ví dụ: 65000" min="0">
+            </div>
+            <div class="form-group">
+                <label>Số lượng:</label>
+                <input type="number" id="food-qty" value="1" min="1">
+            </div>
+            <button type="button" class="btn btn-success" onclick="addItemToList()">+ Thêm món vào danh sách</button>
+        </div>
+
+        <label style="font-weight: bold; font-size: 14px;">Món đã chọn:</label>
+        <div id="selected-items" class="item-list">
+            <!-- Món ăn thêm tạm thời sẽ hiện ở đây -->
+            <div style="color: #95a5a6; text-align: center; margin-top: 20px;">Chưa có món nào được chọn.</div>
+        </div>
+
+        <div class="form-group">
+            <label>Ngày thanh toán (Mặc định: Hôm nay):</label>
+            <input type="date" id="order-date">
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="include-tip">
+            <label for="include-tip">Tính thêm 5% tiền Tip dịch vụ</label>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="processInvoice()">⚡ Xuất Hóa Đơn Chi Tiết</button>
+    </div>
+
+    <!-- KHU VỰC HIỂN THỊ HÓA ĐƠN ĐẠNG TEXT BOX -->
+    <div class="receipt-container">
+        <h3><i class="fa-solid fa-receipt"></i> Kết Quả Hóa Đơn</h3>
+        <div id="receipt-box" class="receipt-output">Nhập thông tin bên trái và bấm nút "Xuất Hóa Đơn" để xem kết quả tại đây...</div>
+    </div>
+
+    <script src="restaurant_bill.js"></script>
+</body>
+</html>
