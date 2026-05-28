@@ -13,7 +13,7 @@ const products = [
 
 // 1. Lọc sản phẩm còn hàng
 function getInStock(products) {
-    return products.filter(p => p.stock > 0);
+    return products.filter(p => p.stock > 25);
 }
 
 // 2. Lọc theo category VÀ khoảng giá
