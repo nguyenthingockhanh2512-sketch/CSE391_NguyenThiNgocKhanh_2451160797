@@ -32,7 +32,7 @@ Cho HTML:
     </main>
 </div>
 ```
-
+```html
 1. Vẽ DOM tree (sơ đồ cây) cho HTML trên
 Document
 └── <html>
@@ -51,6 +51,7 @@ Document
                 └── <ul id="todoList">
                     ├── <li class="todo-item"> (text: "Learn HTML")
                     └── <li class="todo-item completed"> (text: "Learn CSS")
+```
 2. Viết **querySelector** cho mỗi yêu cầu:
     Chọn thẻ <h1>: document.querySelector('h1')
 
@@ -126,42 +127,49 @@ Tìm và sửa **tất cả lỗi** (ít nhất 7 lỗi):
 // App: Counter with history
 const countDisplay = document.querySelector(".count");
 const historyList = document.getElementById("history");
-
 let count = 0;
 
-document.querySelector("#incrementBtn").addEventListener("click", function() {
+document.querySelector("#incrementBtn").addEventListener("click", () => {
     count++;
-    countDisplay.innerHTML = count;
+    countDisplay.textContent = count; // Dùng textContent tốt và an toàn hơn innerHTML
     
     // Lưu history
     const li = document.createElement("li");
     li.textContent = "Count changed to " + count;
-    li.addEventListener("click", function() {
-        deleteHistory(this);
+    
+    // Sửa 7: Dùng arrow function và gọi trực tiếp hàm remove trên element
+    li.addEventListener("click", () => {
+        li.remove();
     });
     historyList.append(li);
 });
 
-document.querySelector("#decrementBtn").addEventListener("onclick", function() {
+// Sửa 1: "onclick" -> "click"
+document.querySelector("#decrementBtn").addEventListener("click", () => {
     count--;
-    countDisplay.innerHTML = count;
+    countDisplay.textContent = count;
 });
 
 document.querySelector("#resetBtn").addEventListener("click", () => {
     count = 0;
-    countDisplay = count;
-    historyList.innerHTML = null;
+    // Sửa 2: Cập nhật textContent thay vì gán đè biến DOM
+    countDisplay.textContent = count;
+    // Sửa 6: Gán chuỗi rỗng thay vì null
+    historyList.innerHTML = ''; 
 });
 
-function deleteHistory(element) {
+// Đã có method .remove() tích hợp sẵn trong DOM nên hàm này thực ra không cần thiết nữa
+/* function deleteHistory(element) {
     element.parentNode.removeChild(element);
-}
+} 
+*/
 
 // Clear all history
 document.querySelector("#clearHistory").addEventListener("click", () => {
     const items = historyList.querySelectorAll("li");
     items.forEach(item => {
-        item.remove;
+        // Sửa 3: Thêm ngoặc đơn () để gọi hàm
+        item.remove();
     });
 });
 
@@ -173,96 +181,46 @@ window.addEventListener("beforeunload", () => {
 
 // Load from localStorage
 window.addEventListener("load", () => {
-    count = localStorage.getItem("count");
+    // Sửa 4: Ép kiểu dữ liệu về số (Number)
+    count = Number(localStorage.getItem("count")) || 0;
     countDisplay.textContent = count;
+    
+    // Sửa 5: Phục hồi lại dữ liệu cho History List
+    historyList.innerHTML = localStorage.getItem("history") || '';
+    
+    // Lưu ý phụ: Vì innerHTML chỉ tạo lại HTML tĩnh, các thẻ li được tải lên từ localStorage 
+    // sẽ bị mất event listener "click" (không thể click để xóa được nữa). 
+    // Giải pháp hoàn hảo cho vấn đề này là sử dụng Event Delegation (gắn 1 event duy nhất lên historyList).
 });
 ```
 
 ### Câu C2 (7đ) — Performance
 
 1. Giải thích: Tại sao bind event lên 1000 elements riêng lẻ là **BAD PRACTICE**? Event Delegation giải quyết thế nào?
+    Tiêu tốn bộ nhớ (Memory Leak): Khi bạn dùng addEventListener lên 1000 phần tử, trình duyệt phải tạo ra và lưu trữ 1000 hàm (objects) xử lý sự kiện riêng biệt trong bộ nhớ RAM. Điều này làm trang web nặng nề và dễ bị giật lag.
 
-2. Cho code:
+    Giảm hiệu suất khởi tạo (Performance): Vòng lặp gắn 1000 sự kiện lúc trang vừa tải sẽ tốn thời gian xử lý của CPU (Main Thread), làm chậm quá trình hiển thị giao diện ban đầu của người dùng.
+
+Event Delegation giải quyết thế nào?
+    Event Delegation (Ủy quyền sự kiện) giải quyết bằng cách áp dụng cơ chế Event Bubbling (Sự kiện sủi bọt).
+
+    Cách hoạt động: Thay vì gắn 1000 sự kiện cho 1000 phần tử con, bạn chỉ gắn 1 sự kiện duy nhất cho phần tử cha chứa chúng. Khi người dùng click vào phần tử con, sự kiện đó sẽ "sủi bọt" (chạy ngược lên) phần tử cha.
+
+    Tại phần tử cha, ta dùng event.target để xác định chính xác phần tử con nào vừa bị click và xử lý.
+
+    Lợi ích: Chỉ có 1 event listener trong RAM. Các phần tử con được thêm vào sau này (dynamic) vẫn tự động nhận được sự kiện mà không cần bind lại.
+    2. Cho code:
 ```javascript
+
 for (let i = 0; i < 1000; i++) {
     const div = document.createElement("div");
     div.textContent = `Item ${i}`;
-    document.body.appendChild(div);   // ← 1000 lần reflow!
+    
+    // Nối phần tử vào fragment thay vì nối thẳng vào document.body
+    fragment.appendChild(div); 
 }
+// Chèn toàn bộ fragment vào body duy nhất 1 lần
+document.body.appendChild(fragment);
 ```
-Refactor dùng `DocumentFragment` để chỉ gây 1 lần reflow. Giải thích tại sao nhanh hơn.
-
 ---
 
-## 🎬 PHẦN D — VIDEO THỰC HÀNH OBS (25 điểm)
-
-> ⏱️ **Thời lượng video:** 10-15 phút
->
-> 📖 **Xem quy định chi tiết tại [README.md](./README.md#-quy-định-video-thực-hành-obs)**
-
-### Đề bài Video: Code-along "Mini Todo App từ Zero bằng DOM"
-
-**Yêu cầu:** Quay video tạo Todo App cơ bản hoàn chỉnh (Add + Delete + Toggle) từ đầu.
-
-**Trong video, bạn phải:**
-
-1. 🎤 Tạo HTML skeleton: form + input + button + ul (empty)
-2. 🎤 Viết JS: `document.querySelector` cho form, input, list — giải thích mỗi selector
-3. 🎤 `form.addEventListener("submit", ...)` — giải thích:
-   - Tại sao dùng `submit` event thay vì `click` trên button?
-   - `e.preventDefault()` — nếu không có thì sao? Demo TRƯỚC khi thêm → trang reload
-4. 🎤 `document.createElement("li")` + `appendChild` — giải thích tạo DOM node
-5. 🎤 Thêm nút ❌ xóa: Bind event trên nút → `li.remove()` — giải thích
-6. 🎤 Toggle completed: Click vào text → `classList.toggle("completed")` — giải thích toggle
-7. 🎤 Demo cuối: Thêm 3 todos → Toggle 1 → Xóa 1 → Show kết quả
-8. 🎤 Giải thích: Tại sao dùng `createElement` thay vì `innerHTML`? (XSS risk)
-
-**Code mẫu cần thực hiện:**
-
-```javascript
-const form = document.querySelector("#todoForm");
-const input = document.querySelector("#todoInput");
-const list = document.querySelector("#todoList");
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!input.value.trim()) return;
-    
-    const li = document.createElement("li");
-    li.textContent = input.value;
-    
-    li.addEventListener("click", () => {
-        li.classList.toggle("completed");
-    });
-    
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "❌";
-    deleteBtn.addEventListener("click", () => li.remove());
-    li.appendChild(deleteBtn);
-    
-    list.appendChild(li);
-    input.value = "";
-    input.focus();
-});
-```
-
-**Checklist video:**
-- [ ] Đầu video: Giới thiệu tên + MSSV + lớp
-- [ ] Webcam mặt SV ở góc phải dưới
-- [ ] Gõ code từng dòng HTML → CSS → JS
-- [ ] Demo: preventDefault trước/sau, thêm/xóa/toggle todo
-- [ ] Cuối video: Tổng kết DOM Manipulation flow
-
----
-
-## ✅ CHECKLIST NỘP BÀI
-
-- [ ] File `answers.md` — Phần A + C
-- [ ] Folder `todo_app/` — Bài B1 (index.html + style.css + app.js)
-- [ ] Folder `product_catalog/` — Bài B2
-- [ ] Folder `form_validator/` — Bài B3
-- [ ] Folder `keyboard_app/` — Bài B4
-- [ ] Folder `screenshots/` — mỗi app ít nhất 2 screenshots
-- [ ] 🎬 **Video OBS** — `videos/PBT09_HoTen_MaSV.mp4` (hoặc link YouTube/Drive)
-- [ ] **Video demo** (khuyến khích): Quay màn hình 30s mỗi app đang hoạt động
-- [ ] Ít nhất **5 commits** (1 commit/bài ≠ dồn commit)
