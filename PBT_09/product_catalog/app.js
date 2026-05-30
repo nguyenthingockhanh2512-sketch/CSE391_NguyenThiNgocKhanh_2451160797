@@ -1,29 +1,25 @@
 // === 1. DỮ LIỆU SẢN PHẨM (Mảng JS) ===
+// Khai báo mảng chứa các đối tượng (object) sản phẩm.
 const products = [
     { id: 1, name: "iPhone 16", price: 25990000, category: "phone", image: "https://placehold.co/200?text=iPhone+16", rating: 4.8, inStock: true },
     { id: 2, name: "Samsung S24 Ultra", price: 31990000, category: "phone", image: "https://placehold.co/200?text=S24+Ultra", rating: 4.7, inStock: true },
     { id: 3, name: "Xiaomi 14 Pro", price: 19990000, category: "phone", image: "https://placehold.co/200?text=Xiaomi+14", rating: 4.5, inStock: false },
     { id: 4, name: "MacBook Pro M3", price: 39990000, category: "laptop", image: "https://placehold.co/200?text=MacBook+M3", rating: 4.9, inStock: true },
-    { id: 5, name: "Dell XPS 13", price: 35000000, category: "laptop", image: "https://placehold.co/200?text=Dell+XPS", rating: 4.6, inStock: true },
-    { id: 6, name: "Asus ROG Zephyrus", price: 42000000, category: "laptop", image: "https://placehold.co/200?text=Asus+ROG", rating: 4.8, inStock: true },
-    { id: 7, name: "iPad Pro M4", price: 28990000, category: "tablet", image: "https://placehold.co/200?text=iPad+Pro", rating: 4.9, inStock: true },
-    { id: 8, name: "Galaxy Tab S9", price: 19990000, category: "tablet", image: "https://placehold.co/200?text=Tab+S9", rating: 4.5, inStock: true },
-    { id: 9, name: "Xiaomi Pad 6", price: 8990000, category: "tablet", image: "https://placehold.co/200?text=Pad+6", rating: 4.4, inStock: true },
-    { id: 10, name: "AirPods Pro 2", price: 6000000, category: "accessory", image: "https://placehold.co/200?text=AirPods", rating: 4.8, inStock: true },
-    { id: 11, name: "Logitech MX Master 3S", price: 2500000, category: "accessory", image: "https://placehold.co/200?text=MX+Master", rating: 4.9, inStock: true },
-    { id: 12, name: "Sạc Anker 100W", price: 1200000, category: "accessory", image: "https://placehold.co/200?text=Anker", rating: 4.7, inStock: false },
 ];
 
-// Trạng thái ứng dụng
-let currentProducts = [...products]; // Mảng copy để chứa sản phẩm đang lọc
-let cartCount = 0;
+// Trạng thái ứng dụng (State)
+// Tạo một mảng copy từ mảng gốc (dùng spread operator [...]) để chứa các sản phẩm đang được hiển thị (sau khi lọc/tìm kiếm).
+// Việc này giúp mảng gốc `products` không bao giờ bị thay đổi hay mất dữ liệu.
+let currentProducts = [...products]; 
+let cartCount = 0; // Biến đếm số lượng sản phẩm trong giỏ hàng
 
 // === 2. HÀM KHỞI TẠO UI TỪ SỐ 0 (100% Render bằng JS) ===
 function initApp() {
+    // Lấy thẻ div#app trống từ file HTML
     const app = document.getElementById('app');
 
-    // Dùng innerHTML cho khung sườn tổng quan (skeleton) để code gọn gàng.
-    // (Các sản phẩm bên trong sẽ render bằng createElement theo chuẩn)
+    // Dùng innerHTML để tạo KHUNG SƯỜN (skeleton) cho ứng dụng.
+    // Lưu ý: Chỉ dùng innerHTML cho các thành phần tĩnh, do mình tự viết code, không chứa dữ liệu do user nhập vào để tránh lỗi bảo mật XSS.
     app.innerHTML = `
         <header>
             <h1>Tech Store</h1>
@@ -42,8 +38,6 @@ function initApp() {
                 <button data-cat="all" class="active">Tất cả</button>
                 <button data-cat="phone">Điện thoại</button>
                 <button data-cat="laptop">Laptop</button>
-                <button data-cat="tablet">Tablet</button>
-                <button data-cat="accessory">Phụ kiện</button>
             </div>
 
             <select id="sortSelect">
@@ -58,118 +52,146 @@ function initApp() {
         <div id="product-grid"></div>
     `;
 
-    // Gắn sự kiện (Event Listeners) sau khi DOM skeleton đã được tạo
+    // Nối các sự kiện (Event Listeners) vào các thẻ vừa tạo ở trên
+    // Sự kiện 'input' bắt nhạy hơn 'change', kích hoạt ngay khi gõ từng chữ
     document.getElementById('searchInput').addEventListener('input', searchProducts);
+    // Gắn sự kiện click lên thẻ cha chứa các nút (Event Delegation)
     document.getElementById('categoryFilters').addEventListener('click', filterByCategory);
     document.getElementById('sortSelect').addEventListener('change', sortProducts);
     document.getElementById('themeToggle').addEventListener('click', toggleDarkMode);
 
-    // Gọi hàm render danh sách sản phẩm lần đầu
+    // Gọi hàm render để vẽ danh sách sản phẩm ra màn hình lần đầu tiên
     renderProducts(currentProducts);
 }
 
 // === 3. CÁC HÀM XỬ LÝ CHÍNH (Core Functions) ===
 
-// Render danh sách sản phẩm
+// Hàm Render (Vẽ) danh sách sản phẩm
 function renderProducts(items) {
     const grid = document.getElementById('product-grid');
-    grid.innerHTML = ''; // Làm sạch lưới sản phẩm cũ
+    grid.innerHTML = ''; // Làm sạch lưới sản phẩm cũ trước khi vẽ lưới mới
 
+    // TỐI ƯU HIỆU NĂNG: Tạo DocumentFragment.
+    // Đây là một dạng "DOM ảo" nằm trong RAM. Ta sẽ nhét tất cả thẻ HTML vào đây trước,
+    // sau đó chèn 1 lần duy nhất vào lưới (grid) thật để trình duyệt không bị giật (tránh reflow nhiều lần).
     const fragment = document.createDocumentFragment();
 
     items.forEach(product => {
-        // Tạo DOM thủ công bằng createElement theo đúng yêu cầu an toàn
+        // TẠO DOM THỦ CÔNG: An toàn tuyệt đối, dùng để render dữ liệu động
         const card = document.createElement('div');
         card.className = 'product-card';
         
-        // Sự kiện click mở Modal
+        // Nhấn vào bất kỳ đâu trên thẻ card cũng sẽ mở Modal chi tiết
         card.addEventListener('click', () => openModal(product));
 
+        // Tạo thẻ ảnh
         const img = document.createElement('img');
         img.src = product.image;
         img.alt = product.name;
 
+        // Tạo thẻ tiêu đề
         const title = document.createElement('h3');
         title.textContent = product.name;
 
+        // Tạo thẻ giá
         const price = document.createElement('p');
         price.className = 'price';
+        // toLocaleString() giúp hiển thị số tiền có dấu phẩy (vd: 25,990,000)
         price.textContent = `${product.price.toLocaleString()} VNĐ`;
 
+        // Tạo thẻ đánh giá
         const rating = document.createElement('p');
         rating.className = 'rating';
         rating.textContent = `${product.rating} ⭐`;
 
+        // Tạo nút "Thêm vào giỏ"
         const btn = document.createElement('button');
         btn.textContent = product.inStock ? 'Thêm vào giỏ' : 'Hết hàng';
-        btn.disabled = !product.inStock;
+        btn.disabled = !product.inStock; // Vô hiệu hóa nút nếu hết hàng
         if(!product.inStock) btn.style.backgroundColor = 'gray';
         
-        // Ngăn sự kiện click sủi bọt (bubbling) lên thẻ card để không vô tình mở Modal khi bấm "Thêm giỏ"
+        // QUAN TRỌNG: Ngăn chặn sủi bọt sự kiện (Event Bubbling).
+        // Vì thẻ card đã có sự kiện click để mở Modal. Nếu không có dòng này, 
+        // khi ta click "Thêm vào giỏ", Modal cũng sẽ bị bật lên theo.
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); 
+            e.stopPropagation(); // Dừng sự kiện lại tại đây, không cho lan lên thẻ cha (card)
             addToCart();
         });
 
-        // Nối các thành phần con vào thẻ card
+        // Gắn (Append) tất cả các thẻ con vào trong thẻ card cha
         card.append(img, title, price, rating, btn);
+        // Gắn thẻ card vào DOM ảo (fragment)
         fragment.appendChild(card);
     });
 
+    // Cuối cùng, gắn toàn bộ DOM ảo vào HTML thật trên giao diện
     grid.appendChild(fragment);
 }
 
-// Tìm kiếm sản phẩm
+// Hàm Tìm kiếm sản phẩm
 function searchProducts(e) {
+    // Lấy từ khóa người dùng gõ, chuyển thành chữ thường và xóa khoảng trắng thừa ở 2 đầu
     const keyword = e.target.value.toLowerCase().trim();
+    
+    // Lọc mảng: Giữ lại những sản phẩm mà tên của nó có chứa từ khóa
     currentProducts = products.filter(p => p.name.toLowerCase().includes(keyword));
     
-    // Reset lại sort select về mặc định khi search
+    // Reset ô sắp xếp về mặc định để tránh lỗi logic UX
     document.getElementById('sortSelect').value = 'default';
+    
+    // Vẽ lại giao diện với danh sách mới
     renderProducts(currentProducts);
 }
 
-// Lọc theo Category
+// Hàm Lọc theo Category (Danh mục)
 function filterByCategory(e) {
+    // Nếu click ra ngoài vùng nút (nhưng vẫn nằm trong div) thì bỏ qua
     if (e.target.tagName !== 'BUTTON') return;
     
-    // Cập nhật UI nút active
+    // 1. Cập nhật giao diện của các nút (xóa class 'active' cũ, thêm vào nút mới click)
     const buttons = document.querySelectorAll('.category-filters button');
     buttons.forEach(btn => btn.classList.remove('active'));
     e.target.classList.add('active');
 
-    // Lọc dữ liệu
+    // 2. Lấy tên danh mục từ thuộc tính data-cat (vd: data-cat="phone" -> lấy chữ 'phone')
     const category = e.target.dataset.cat;
+    
+    // 3. Tiến hành lọc mảng
     if (category === 'all') {
-        currentProducts = [...products];
+        currentProducts = [...products]; // Nếu chọn Tất cả thì copy lại mảng gốc
     } else {
         currentProducts = products.filter(p => p.category === category);
     }
     
-    document.getElementById('searchInput').value = ''; // Reset thanh search
-    document.getElementById('sortSelect').value = 'default'; // Reset sort
+    // Dọn dẹp các bộ lọc khác
+    document.getElementById('searchInput').value = ''; 
+    document.getElementById('sortSelect').value = 'default'; 
+    
     renderProducts(currentProducts);
 }
 
-// Sắp xếp sản phẩm
+// Hàm Sắp xếp sản phẩm
 function sortProducts(e) {
-    const sortType = e.target.value;
+    const sortType = e.target.value; // Lấy giá trị từ thẻ <select>
     
+    // Hàm sort() sẽ làm thay đổi trực tiếp mảng hiện tại.
+    // Nó lấy 2 phần tử (a và b) ra so sánh. Nếu kết quả < 0 thì a đứng trước, > 0 thì b đứng trước.
     switch(sortType) {
-        case 'priceAsc':
+        case 'priceAsc': // Giá tăng dần
             currentProducts.sort((a, b) => a.price - b.price);
             break;
-        case 'priceDesc':
+        case 'priceDesc': // Giá giảm dần
             currentProducts.sort((a, b) => b.price - a.price);
             break;
-        case 'nameAZ':
+        case 'nameAZ': // Tên A-Z
+            // localeCompare dùng để so sánh chuỗi chữ cái theo chuẩn ngôn ngữ
             currentProducts.sort((a, b) => a.name.localeCompare(b.name));
             break;
-        case 'ratingDesc':
+        case 'ratingDesc': // Đánh giá cao nhất xếp trước
             currentProducts.sort((a, b) => b.rating - a.rating);
             break;
         default:
-            // Sắp xếp theo ID (mặc định ban đầu)
+            // Khôi phục sắp xếp mặc định theo ID
             currentProducts.sort((a, b) => a.id - b.id);
     }
     renderProducts(currentProducts);
@@ -181,21 +203,24 @@ function sortProducts(e) {
 function addToCart() {
     cartCount++;
     const badge = document.getElementById('cartBadge');
-    badge.textContent = cartCount;
+    badge.textContent = cartCount; // Cập nhật số
     
-    // Thêm animation giật nảy nhỏ cho đẹp
+    // Tạo hiệu ứng giật nảy nhẹ khi bấm thêm đồ (bằng CSS Inline)
     badge.style.transform = 'scale(1.5)';
     setTimeout(() => badge.style.transform = 'scale(1)', 200);
 }
 
 // Mở Modal chi tiết sản phẩm
 function openModal(product) {
+    // 1. Tạo một lớp phủ (overlay) đen mờ bao trùm toàn bộ màn hình
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
     
+    // 2. Tạo nội dung modal ở giữa
     const content = document.createElement('div');
     content.className = 'modal-content';
     
+    // Đổ nội dung vào modal (dùng innerHTML cho nhanh vì đây không phải mảng động)
     content.innerHTML = `
         <button class="close-modal">&times;</button>
         <img src="${product.image}" alt="${product.name}" style="width: 150px; margin-bottom: 15px;">
@@ -208,20 +233,27 @@ function openModal(product) {
         </button>
     `;
 
-    // Nút đóng modal
+    // 3. Xử lý đóng Modal
+    // Nút X (close)
     content.querySelector('.close-modal').addEventListener('click', () => overlay.remove());
-    // Click ra ngoài (overlay) để đóng
+    // Nhấp vào nền đen (overlay) bên ngoài cũng sẽ đóng modal
     overlay.addEventListener('click', (e) => {
+        // e.target là phần tử bị click. Chỉ xóa khi người dùng click đúng vào nền đen, không phải nội dung bên trong
         if(e.target === overlay) overlay.remove();
     });
 
+    // 4. Nhét nội dung vào lớp phủ, rồi nhét lớp phủ vào body
     overlay.appendChild(content);
     document.body.appendChild(overlay);
 }
 
-// Bật/tắt Dark Mode
+// Bật/tắt chế độ tối (Dark Mode)
 function toggleDarkMode() {
+    // classList.toggle sẽ tự kiểm tra: Nếu thẻ body chưa có class 'dark-mode' thì thêm vào, nếu có rồi thì gỡ ra.
+    // Nó trả về true (nếu vừa thêm) hoặc false (nếu vừa gỡ).
     const isDark = document.body.classList.toggle('dark-mode');
+    
+    // Đổi chữ của nút bấm cho phù hợp với chế độ
     const btn = document.getElementById('themeToggle');
     btn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
 }
