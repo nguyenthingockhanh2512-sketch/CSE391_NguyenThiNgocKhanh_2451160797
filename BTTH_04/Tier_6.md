@@ -1,10 +1,6 @@
-# Hướng dẫn Giải bài tập Tier 6 — Lists & CRUD (Danh sách và Thêm/Sửa/Xóa)
+# Tier 6 — Lists & CRUD (Danh sách và Thêm/Sửa/Xóa)
 
-Tài liệu này cung cấp lời giải chi tiết cho các thử thách trong **Tier 6**. Đây là kiến thức nền tảng cực kỳ quan trọng để xây dựng các ứng dụng quản lý dữ liệu thực tế (như quản lý thu chi, quản lý sinh viên, v.v.).
-
----
-
-## 📝 Lời giải Bài 6.1 — Render danh sách
+## 📝 6.1 — Render danh sách
 
 ### Yêu cầu thử thách:
 1. Hiển thị STT cho mỗi sinh viên.

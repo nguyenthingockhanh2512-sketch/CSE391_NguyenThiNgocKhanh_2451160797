@@ -1,8 +1,4 @@
-# Hướng dẫn Giải bài tập Tier 5 — Events cơ bản (Xử lý sự kiện trong React)
-
-Tài liệu này cung cấp lời giải chi tiết cho các thử thách trong **Tier 5**, hướng dẫn bạn cách bắt và xử lý các sự kiện tương tác của người dùng như Click chuột, Gõ phím, Thay đổi Input và Submit Form.
-
----
+# bài tập Tier 5 — Events cơ bản (Xử lý sự kiện trong React)
 
 ## 📝 Lời giải Bài 5.1 — Click Events
 

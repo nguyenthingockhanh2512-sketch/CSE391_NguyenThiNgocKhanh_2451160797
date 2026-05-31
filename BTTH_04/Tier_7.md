@@ -1,10 +1,5 @@
-# Hướng dẫn Giải Thử thách mở rộng Tier 7 — Mini Project: Todo App
+#  Tier 7 — Mini Project: Todo App
 
-Chúc mừng bạn đã đi đến Tier cuối cùng của chặng cơ bản! Để giúp bạn nắm vững kiến thức hơn, tài liệu này sẽ cung cấp mã nguồn nâng cấp cho Todo App, giải quyết các thử thách ở **Level 1** (Ngày tạo, Tổng số) và **Level 2** (Sửa inline, Lưu LocalStorage).
-
-Việc làm chủ cấu trúc thêm, sửa, xóa, lọc và lưu trữ LocalStorage này chính là bộ khung hoàn hảo để bạn phát triển tiếp các module cốt lõi như ghi chép giao dịch, phân loại khoản chi trong hệ thống QLCTTM sau này.
-
----
 
 ## 🏗️ 1. Component Chính: `App.jsx` (Nâng cấp LocalStorage & Thống kê)
 

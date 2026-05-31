@@ -1,0 +1,178 @@
+# Tier 3 — Chia Component (Tư duy tổ chức giao diện)
+
+## 📝 Bài 3.1 — Tại sao phải chia? (10 phút)
+
+### Vấn đề: Code quá dài, khó bảo trì
+
+
+## 📝 Bài 3.2 — Bài tập chia component (15 phút)
+
+### Bài tập 1: Chia Card sản phẩm
+
+**Yêu cầu:** Tách component `ProductCard` ra file riêng
+
+```
+📁 src/
+├── components/
+│   └── ProductCard.jsx    ← Component con
+├── App.jsx                ← Component cha
+└── main.jsx
+```
+
+**ProductCard.jsx:**
+```jsx
+function ProductCard({ name, price, image }) {
+    return (
+        <div style={{ 
+            border: "1px solid #ddd", 
+            borderRadius: "8px",
+            padding: "15px",
+            margin: "10px"
+        }}>
+            <img src={image} alt={name} style={{ width: "100%", borderRadius: "4px" }} />
+            <h3>{name}</h3>
+            <p style={{ color: "#e74c3c", fontWeight: "bold" }}>{price}đ</p>
+            <button style={{ 
+                background: "#3498db", 
+                color: "white",
+                border: "none",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                cursor: "pointer"
+            }}>
+                Thêm vào giỏ
+            </button>
+        </div>
+    );
+}
+
+export default ProductCard;
+```
+
+**App.jsx:**
+```jsx
+import ProductCard from "./components/ProductCard";
+
+function App() {
+    const products = [
+        { id: 1, name: "iPhone 15", price: "25.000.000", image: "https://via.placeholder.com/200" },
+        { id: 2, name: "Samsung S24", price: "22.000.000", image: "https://via.placeholder.com/200" },
+        { id: 3, name: "Xiaomi 14", price: "15.000.000", image: "https://via.placeholder.com/200" }
+    ];
+
+    return (
+        <div>
+            <h1 style={{ textAlign: "center" }}>Cửa hàng điện thoại</h1>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                {products.map(product => (
+                    <ProductCard 
+                        key={product.id}
+                        name={product.name}
+                        price={product.price}
+                        image={product.image}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+```
+
+### Bài tập 2: Chia trang web
+
+**Yêu cầu:** Tách `Header`, `Footer` ra file riêng
+
+```
+📁 src/
+├── components/
+│   ├── Header.jsx
+│   ├── Footer.jsx
+│   └── ProductCard.jsx
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 📝 Bài 3.3 — Props: Truyền dữ liệu từ cha → con (10 phút)
+
+### Giải thích
+Props = "thông tin" truyền từ component cha xuống component con
+
+```jsx
+// Component con (nhận props)
+function Greeting({ name, age }) {
+    return (
+        <div>
+            <h2>Xin chào {name}!</h2>
+            <p>Tuổi: {age}</p>
+        </div>
+    );
+}
+
+// Component cha (truyền props)
+function App() {
+    return (
+        <div>
+            <Greeting name="Minh" age={20} />
+            <Greeting name="An" age={21} />
+            <Greeting name="Linh" age={19} />
+        </div>
+    );
+}
+```
+
+### Props có thể là gì?
+```jsx
+// String
+<Greeting name="Minh" />
+
+// Number
+<Greeting age={20} />
+
+// Boolean
+<Greeting isStudent={true} />
+
+// Array
+<Greeting hobbies={["Đọc sách", "Code"]} />
+
+// Object
+<Greeting address={{ city: "Hà Nội", district: "Cầu Giấy" }} />
+
+// Function (sẽ học sau)
+<Greeting onClick={() => console.log("clicked")} />
+```
+
+### Thử thách
+import React from 'react';
+
+// Dùng destructuring để nhận trực tiếp các props: name, email, avatar
+function UserCard({ name, email, avatar }) {
+    return (
+        <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            padding: "15px", 
+            border: "1px solid #dcdde1", 
+            borderRadius: "10px", 
+            marginBottom: "15px",
+            background: "#fdfdfd",
+            boxShadow: "0 2px 4px rgba(0,0,0,0.05)"
+        }}>
+            <img 
+                src={avatar} 
+                alt={`Avatar of ${name}`} 
+                style={{ width: "60px", height: "60px", borderRadius: "50%", marginRight: "15px", objectFit: "cover" }} 
+            />
+            <div>
+                <h3 style={{ margin: "0 0 5px 0", color: "#2f3640" }}>{name}</h3>
+                <p style={{ margin: 0, color: "#7f8fa6", fontSize: "14px" }}>{email}</p>
+            </div>
+        </div>
+    );
+}
+
+export default UserCard;
+
