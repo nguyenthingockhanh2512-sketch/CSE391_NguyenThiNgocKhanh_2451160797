@@ -1,0 +1,64 @@
+body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f2f5; font-family: Arial, sans-serif; }
+.animation-container { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+
+/* 1. CARD HOVER EFFECT */
+.product-card {
+    background: white; padding: 20px; border-radius: 12px; width: 300px; text-align: center;
+    /* ĐIỂM QUAN TRỌNG: transition giúp hiệu ứng mượt mà trong 0.3s */
+    transition: all 0.3s ease; 
+}
+.product-card:hover {
+    transform: translateY(-8px); /* Nổi lên trên */
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* Tăng độ đậm của bóng */
+}
+
+/* 2. BUTTON HOVER */
+.buy-btn {
+    padding: 10px 24px; background-color: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px; font-weight: bold;
+    transition: all 0.3s ease;
+}
+.buy-btn:hover {
+    background-color: #2980b9; /* Đổi màu */
+    transform: scale(1.05); /* Phóng to nhẹ 5% */
+}
+
+/* 3. IMAGE ZOOM */
+.img-container {
+    overflow: hidden; /* ĐIỂM QUAN TRỌNG: Giấu phần ảnh bị phình ra khi zoom */
+    border-radius: 8px; margin-bottom: 15px;
+}
+.img-container img {
+    max-width: 100%; display: block;
+    transition: transform 0.4s ease;
+}
+.img-container:hover img {
+    transform: scale(1.1); /* Phóng to ảnh 10% */
+}
+
+/* 4. LOADING SPINNER */
+.spinner {
+    width: 50px; height: 50px;
+    border: 5px solid #e0e0e0; border-top: 5px solid #e74c3c; border-radius: 50%;
+    /* ĐIỂM QUAN TRỌNG: Gọi keyframes 'spin', chạy 1s, đều đặn (linear) và lặp vô hạn (infinite) */
+    animation: spin 1s linear infinite; 
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 5. FADE-IN KHI SCROLL */
+.fade-in-scroll {
+    /* Trạng thái cuối cùng được giữ lại nhờ 'forwards' */
+    animation: fadeIn 1s ease-out forwards;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Bắt đầu từ dưới mờ mờ */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Hiện rõ ở vị trí gốc */
+    }
+}

@@ -1,0 +1,28 @@
+:root {
+    --color-primary: #ffe8f4;    
+    --color-secondary: #f6a6f5;  
+    --color-dark: #1e293b;       
+    --color-light: #f8fafc;    
+    --color-text: #334155;   
+    --font-main: 'Segoe UI', sans-serif;
+}
+*{
+    margin :0;
+    padding:0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth; 
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Container: Giới hạn chiều rộng nội dung để không bị tràn lan trên màn hình lớn */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}

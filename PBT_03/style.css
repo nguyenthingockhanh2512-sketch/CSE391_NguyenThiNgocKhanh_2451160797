@@ -1,0 +1,77 @@
+*{
+    box-sizing : border-box;
+    margin :0;
+    padding :0;
+}
+body{
+    font-family: 'Arial', sans-serif;
+    background-color:rgb(247, 226, 237);
+    color:rgb(17, 10, 44);
+    line-height: 1.6;
+}
+header{
+    background:linear-gradient(to right,#77c6f4 0%, #d1ecec 100%); 
+    color: rgb(249, 249, 249);
+    padding : 40px 20px;
+    text-align: center;
+}
+/* 4. NAVIGATION (Menu điều hướng)*/
+nav ul {
+    list-style: none;          /* Bỏ dấu chấm tròn đầu dòng của danh sách */
+    margin-top: 15px;
+}
+
+nav ul li {
+    display: inline;           /* Biến các mục menu từ dọc thành ngang */
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;     /* Bỏ gạch chân mặc định của link */
+    color: white;
+    font-weight: bold;
+}
+nav ul li a:hover{
+    color:#009cf6;
+    text-decoration: underline; /* Thêm gạch chân khi hover để tăng tính tương tác */
+}
+main{
+    max-width: 800px;          /* Giới hạn độ rộng trang để không bị quá dài trên máy tính */
+    margin: 20px auto;         /* Căn giữa toàn bộ khối nội dung */
+    padding: 20px;
+    background: white;         /* Nền trắng cho phần nội dung chính */
+    border-radius: 10px;        /* Bo góc cho khung nội dung */
+}
+img{
+    border-radius: 30px;
+}
+table{
+    width: 100%;
+    border-collapse : collapse;
+    margin-top: 20px;
+}
+table, th, td{
+    padding: 12px;             /* Tạo khoảng trống cho chữ trong ô */
+    text-align: left;
+}
+table th {
+    background-color: #01507d;
+    color: white;
+}
+table tbody tr:nth-child(even){
+    background-color:hsl(206, 52%, 87%);
+}
+table tbody:hover{
+    background-color: hsl(206, 79%, 74%);
+}
+#contact{
+    background-color: hsl(206, 52%, 87%);
+    color: rgb(17, 15, 15);
+    padding: 40px 20px;
+}
+footer{
+    background-color: #01507d;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

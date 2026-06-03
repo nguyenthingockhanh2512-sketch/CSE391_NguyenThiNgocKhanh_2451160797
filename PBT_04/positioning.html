@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài B1 - Positioning Playground</title>
+    <link rel="stylesheet" href="positioning.css">
+</head>
+<body>
+
+    <!-- 1. FIXED HEADER: Luôn neo cố định ở đỉnh màn hình, trượt qua mọi nội dung -->
+    <header class="header">
+        <div class="logo">🚀 TECHSHOP</div>
+        <nav class="nav-links">
+            <a href="#">Trang Chủ</a>
+            <a href="#">Sản Phẩm</a>
+            <a href="#">Tin Tức</a>
+            <a href="#">Liên Hệ</a>
+        </nav>
+    </header>
+
+    <div class="app-container">
+        
+        <!-- 2. STICKY SIDEBAR: Cuộn theo nội dung nhưng sẽ "mắc kẹt" khi cách đỉnh 80px -->
+        <aside class="sidebar">
+            <div class="sidebar-wrapper">
+                <h3>Bộ Lọc Sản Phẩm</h3>
+                <ul class="filter-group">
+                    <li><label><input type="checkbox"> Điện thoại Laptop</label></li>
+                    <li><label><input type="checkbox"> Phụ kiện Công nghệ</label></li>
+                    <li><label><input type="checkbox"> Thiết bị Nhà thông minh</label></li>
+                    <li><label><input type="checkbox"> Linh kiện PC Gaming</label></li>
+                </ul>
+                <div class="sticky-note">
+                    <p>📌 <strong>Ghi chú:</strong> Sidebar dùng `position: sticky`. Cuộn trang xuống để thấy nó dính lại cách top 80px!</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- KHU VỰC NỘI DUNG CHÍNH -->
+        <main class="main-content">
+            <h2>Danh Sách Sản Phẩm Mới Nhất</h2>
+            <p class="intro-text">Hãy thử cuộn trang xuống để xem hiệu ứng hoạt động của Fixed Header, Sticky Sidebar và nút Scroll To Top.</p>
+            
+            <div class="product-grid">
+                <!-- 3. PRODUCT CARD: Dùng position relative để làm gốc tọa độ cho Badge -->
+                <div class="product-card">
+                    <!-- BADGE HOT: Dùng position absolute để gắn nổi lên trên góc card -->
+                    <div class="badge-hot">HOT</div>
+                    <div class="image-placeholder">💻</div>
+                    <div class="card-body">
+                        <h4>MacBook Pro M3 Max</h4>
+                        <p class="price">69.990.000 đ</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge-hot">HOT</div>
+                    <div class="image-placeholder">📱</div>
+                    <div class="card-body">
+                        <h4>iPhone 15 Pro Max 512GB</h4>
+                        <p class="price">34.490.000 đ</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="image-placeholder">🎧</div>
+                    <div class="card-body">
+                        <h4>Sony WH-1000XM5</h4>
+                        <p class="price">6.490.000 đ</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge-hot">HOT</div>
+                    <div class="image-placeholder">⌚</div>
+                    <div class="card-body">
+                        <h4>Apple Watch Ultra 2</h4>
+                        <p class="price">21.990.000 đ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Các khối giả lập tạo độ dài cho trang để test cuộn (scroll) -->
+            <div class="scroll-spacer">
+                <h3>Vùng giả lập nội dung dài</h3>
+                <div class="box-decoration">Khối cuộn 1</div>
+                <div class="box-decoration">Khối cuộn 2</div>
+                <div class="box-decoration">Khối cuộn 3</div>
+                <div class="box-decoration">Khối cuộn 4</div>
+                <div class="box-decoration">Khối cuộn 5</div>
+                <p>Bạn đã cuộn xuống rất sâu! Sidebar vẫn dính bên trái, Header vẫn dính bên trên.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- 4. FIXED BUTTON: Nút cuộn lên đầu trang, dùng fixed để luôn nằm góc phải dưới màn hình -->
+    <button class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+
+</body>
+</html>

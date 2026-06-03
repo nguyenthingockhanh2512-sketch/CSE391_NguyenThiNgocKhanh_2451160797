@@ -1,0 +1,132 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    font-family: sans-serif; 
+    background-color: #e2e8f0; 
+    padding: 20px; 
+}
+
+/* =========================================
+   HỆ THỐNG LƯỚI CHÍNH (MACRO GRID)
+   ========================================= */
+.layout-wrapper {
+    /* 1. Kích hoạt môi trường lưới CSS Grid */
+    display: grid; 
+    
+    /* 2. Chia 3 cột. Trái 200px, Phải 200px. 
+       Cột giữa dùng minmax() để co giãn linh hoạt chiếm phần còn lại, 
+       nhưng tối thiểu không được nhỏ hơn 300px để tránh vỡ giao diện. */
+    grid-template-columns: 200px minmax(300px, 1fr) 200px; 
+    
+    /* 3. BONUS (5đ): Kỹ thuật vẽ sơ đồ (Named Areas) cực kỳ trực quan.
+       Mỗi chuỗi "" đại diện cho 1 hàng. Tên giống nhau xếp cạnh nhau nghĩa là gộp ô (span). */
+    grid-template-areas: 
+        "header  header  header"
+        "hero    hero    hero"
+        "sidebar main    ads"
+        "footer  footer  footer";
+        
+    gap: 20px; /* Tạo rãnh (khe hở) 20px giữa tất cả các vùng lưới */
+    max-width: 1200px;
+    margin: 0 auto; /* Căn giữa toàn bộ giao diện ra giữa màn hình */
+}
+
+/* 4. Ánh xạ các thẻ HTML vào đúng các vùng tên đã vẽ trên bản đồ grid-template-areas */
+.header { 
+    grid-area: header; /* Tự động kéo dài 3 cột (Full width) theo bản đồ */
+    background-color: #0f172a; 
+    color: white; 
+    padding: 20px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 8px;
+}
+
+.hero { 
+    grid-area: hero; /* Full width ở hàng số 2 */
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white; 
+    height: 180px; 
+    display: grid; place-items: center; /* Mẹo dùng grid để căn giữa nội dung tuyệt đối */
+    border-radius: 8px;
+}
+
+.sidebar { 
+    grid-area: sidebar; 
+    background-color: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+}
+
+.main-content { 
+    grid-area: main; 
+}
+
+.ads { 
+    grid-area: ads; 
+    background-color: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+}
+
+.footer { 
+    grid-area: footer; /* Full width ở hàng dưới cùng */
+    background-color: #0f172a; 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    border-radius: 8px;
+}
+
+/* Trang trí linh tinh cho đẹp */
+.filter-group { margin-top: 15px; line-height: 1.8; }
+.ads-banner { background: #fef08a; padding: 20px; text-align: center; height: 100%; border: 2px dashed #eab308; border-radius: 8px;}
+
+/* =========================================
+   HỆ THỐNG LƯỚI CON (SUB-GRID CHO SẢN PHẨM)
+   ========================================= */
+.product-grid {
+    /* Mở ra một lưới mới độc lập nằm gọn bên trong thẻ Main */
+    display: grid; 
+    
+    /* Lặp lại 3 cột, mỗi cột chiếm 1 phần không gian bằng nhau (1fr) */
+    grid-template-columns: repeat(3, 1fr); 
+    
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* Khung Card chung */
+.card {
+    background-color: white; 
+    border: 1px solid #cbd5e1; 
+    border-radius: 8px;
+    padding: 20px; 
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+.card-img { font-size: 40px; background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+.price { color: #ef4444; font-weight: bold; margin-top: 10px; }
+
+/* =========================================
+   BONUS NÂNG CAO: Grid Column Span
+   ========================================= */
+.card-feature {
+    /* Ra lệnh cho Card này kéo dài chiếm phần diện tích của 2 cột gộp lại */
+    grid-column: span 2; 
+    
+    background: #fefce8; 
+    border-color: #fde047;
+    display: flex; /* Nhúng xíu flexbox để căn ngang ảnh và chữ cho đẹp */
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+}
+
+.feat-icon { font-size: 60px; background: white; padding: 20px; border-radius: 8px; border: 1px solid #fde047; }

@@ -1,0 +1,115 @@
+:root {
+    --bs-primary: #f2bacd;        /* Teal 500 */
+    --bs-primary-rgb: 20, 184, 166;
+    --bs-secondary: #64748b;      /* Slate 500 */
+}
+/* Làm cho sidebar dính lại trên màn hình máy tính */
+@media (min-width: 992px) {
+    .sticky-top-custom {
+        position: -webkit-sticky; /* Hỗ trợ trình duyệt cũ */
+        position: sticky;
+        top: 20px; /* Cách mép trên màn hình 20px khi cuộn */
+        z-index: 1000;
+    }
+}
+body {
+    background: linear-gradient(135deg, #a1b8e3 0%, #e8eef7 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+.card-header {
+    background-color: #f8e0f8 !important; /* Xanh xám cực nhạt */
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-header h5 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+/* Bo góc cho các khung (Card) nhìn cho hiện đại */
+.card {
+    border-radius: 12px;
+}
+
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.card {
+    border: none;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border-radius: 12px;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Khi di chuột vào bài viết sẽ hơi nổi lên */
+}
+.sticky-top {
+    position: sticky;
+    top: 100px; /* Below sticky header */
+    z-index: 1;
+}
+.comment img.rounded-circle {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.comment.reply img.rounded-circle {
+    width: 40px;
+    height: 40px;
+}
+.comment.reply {
+    border-left: 3px solid #e2e8f0;
+    padding-left: 1rem;
+}
+.btn-link {
+    color: var(--bs-primary);
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: darken(var(--bs-primary), 10%);
+}
+/* Kích thước Avatar */
+.avatar-main {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.avatar-reply {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+/* Đường kẻ cho câu trả lời */
+.comment-reply {
+    border-color: #dee2e6 !important; /* Màu xám nhạt cho đường kẻ bên trái */
+}
+
+/* Hiệu ứng cho nút Reply */
+.btn-link {
+    font-size: 0.85rem;
+    color: #6c757d;
+    transition: color 0.2s;
+}
+
+.btn-link:hover {
+    color: #0d6efd; /* Đổi sang màu xanh khi di chuột vào */
+}
+/* Add custom spacing class */
+.py-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Custom gap for grids */
+.gap-4 { gap: 2rem; }
+/* Make cards rounder */
+.card {
+    border-radius: 16px;
+}
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Thị Ngọc Khánh | Portfolio</title>
+    <head>
+   
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="skills.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+</head>
+<body>
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo">Ngoc<span>Khanh</span></div>
+            <input type = "checkbox" id="menu-cb" class="menu-cb">
+            <label for="menu-cb" class="menu-icon"><span></span></label>
+
+            <nav>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>    
+    </header>
+    <main>
+        <section class = "hero">
+            <div class = "hero-content">
+                <h1>Hi! I'm Ngọc Khánh</h1>
+                <p>Information System | IT student at TLU</p>
+                <a href="#portfolio" class="cta-button">View My Work</a>
+            </div>
+
+        </section> 
+    </main>
+    <!-- Phần About: Giới thiệu bản thân -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image">
+                
+              
+                <img src="image/khanh.jpg" alt="Profile Photo">
+            </div>
+            <div class="about-content">
+                <h2>About Me</h2>
+                <!-- Class 'lead' giúp đoạn văn nổi bật hơn (chữ to hơn) -->
+                <p class="lead">I'm a second-year student at TLU, Faculty of Information Technology, majoring in Information Systems..</p>
+                <p>Specialized in Business Analyst . Also experienced in HTML SQL, Python, C# and information system design analysis.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Phần Skills: Hiển thị thanh kỹ năng -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2>My Skills</h2>
+            <div class="skill-item">
+                <span class="skill-name">HTML5</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 30%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <span class="skill-name">SQL</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 65%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <span class="skill-name">Python</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 65%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <span class="skill-name">C#</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 50%"></div>
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <span class="skill-name">PTTK</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 70%"></div>
+                </div>
+            </div>
+    </div>  
+</section>
+
+<section id="portfolio" class="portfolio-section">
+    <div class="container">
+        <h2>My Portfolio</h2>
+        <div class="portfolio-filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Web</button>
+            <button class="filter-btn">Mobile</button>
+            <button class="filter-btn">Design</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="Web">
+                <img src="image/smartBudget.png" alt="Project 1" >
+                <div class="portfolio-overlay">
+                    <h3>Smart Budget Website</h3>
+                    <p>React + Node.js</p>
+                </div>
+            </div>
+            <!-- Thêm 5 items khác -->
+            <div class="portfolio-item" data-category="Mobile">
+                <img src="image/pulseFitness.png" alt="Project 2" >
+                <div class="portfolio-overlay">
+                    <h3>Pulse Fitness</h3>
+                    <p>JavaScript (React Native)</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="Mobile">
+                <img src="image/kidLearning.png" alt="Project 3"">
+                <div class="portfolio-overlay">
+                    <h3>Kid Learning</h3>
+                    <p>Dart (Flutter)</p>
+                </div>
+            </div>
+
+             <div class="portfolio-item" data-category="Design">
+                <img src="image/healthCare.png" alt="Project 4">
+                <div class="portfolio-overlay">
+                    <h3>Health Care</h3>
+                    <p>Figma</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="Mobile">
+                <img src="image/periodTracker.png" alt="Project 5">
+                <div class="portfolio-overlay">
+                    <h3>Period Tracker</h3>
+                    <p>Js + Nodejs</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="Mobile">
+                <img src="image/shoppingBag.png" alt="Project 6">
+                <div class="portfolio-overlay">
+                    <h3>Landing BrandBag</h3>
+                    <p>HTML + CSS + JS</p>
+                </div>
+            </div>
+
+    </div>
+</section>
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>Feel free to reach out. I'm always open to discussing new projects.</p>
+                <div class="info-item">
+                    <span class="icon">📧</span>
+                    <span>nguyenthingockhanh2512@gmail.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <span>Hanoi, Vietnam</span>
+                </div>
+                <div class="tel-phone">
+                    <span class="icon">📞</span>
+                    <span>0359876965</span>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">Ngoc<span>Khanh</span></div>
+            <p class="footer-tagline">Building digital experiences | Business Analyst Student</p>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ngọc Khánh. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+/* Sticky Header: Cố định menu ở đỉnh trang khi cuộn */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(208, 228, 249, 0.9); /* Nền sáng có độ trong suốt */
+    
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between; /* Đẩy Logo sang trái, Nav sang phải */
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+/* Navigation Links */
+nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative; /* Làm gốc để vẽ đường gạch chân bên dưới */
+}
+
+/* Hiệu ứng gạch chân chạy từ giữa ra khi hover */
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; left: 50%;
+    width: 0; height: 2px;
+    background: var(--color-primary);
+    transition: var(--transition);
+    transform: translateX(-50%);
+}
+
+nav a:hover::after {
+    width: 100%; /* Khi hover thì đường gạch chân dài ra 100% */
+}
+
+/* Responsive: Ẩn hiện menu trên điện thoại */
+.menu-cb { display: none; } /* Ẩn checkbox mặc định */
+
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Mặc định ẩn menu trên mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: var(--color-light);
+        padding: 1rem 0;
+    }
+
+    /* Kỹ thuật Checkbox Hack: Nếu checkbox được tích, hiển thị nav */
+    .menu-cb:checked ~ nav {
+        display: flex;
+    }
+
+    /* Hiển thị biểu tượng 3 gạch trên mobile */
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+}

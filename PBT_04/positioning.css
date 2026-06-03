@@ -1,0 +1,155 @@
+/* RESET: Xóa padding/margin mặc định của trình duyệt */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Tính border và padding vào tổng kích thước thẻ */
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f5f7fa;
+    /* CHÚ Ý: Bù một khoảng bằng với chiều cao của Fixed Header (60px) 
+       nếu không Header sẽ đè lên nội dung trên cùng của trang */
+    padding-top: 60px; 
+}
+
+/* =========================================
+   1. FIXED HEADER
+   ========================================= */
+.header {
+    position: fixed; /* Bứt ra khỏi luồng, gắn chết vào Viewport (màn hình) */
+    top: 0;          /* Neo sát mép trên */
+    left: 0;         /* Neo sát mép trái */
+    width: 100%;     /* Chiếm toàn bộ chiều ngang */
+    height: 60px;
+    background-color: #1a252f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;   /* Đẩy layer lên cao nhất để không bị nội dung khác đè lên khi cuộn */
+}
+
+.header .nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+/* =========================================
+   BỐ CỤC TỔNG (Dùng Flexbox chia 2 cột: Sidebar và Main)
+   ========================================= */
+.app-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* =========================================
+   2. STICKY SIDEBAR
+   ========================================= */
+.sidebar {
+    width: 250px;
+    flex-shrink: 0; /* Khóa kích thước, không cho phép bị méo khi main-content quá lớn */
+}
+
+.sidebar-wrapper {
+    position: sticky; /* Trạng thái lai giữa Relative và Fixed */
+    top: 80px;        /* Sẽ bắt đầu dính lại khi mép trên của phần tử cách mép màn hình 80px (đã trừ 60px header) */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.filter-group li { margin-bottom: 10px; }
+
+/* =========================================
+   3. ABSOLUTE BADGE TRÊN RELATIVE CARD
+   ========================================= */
+.main-content {
+    flex: 1; /* Chiếm hết phần không gian ngang còn lại */
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product-card {
+    /* QUAN TRỌNG: Thiết lập Relative để biến thẻ div này thành
+       MỐC TỌA ĐỘ cho thẻ badge "HOT" bên trong nó */
+    position: relative; 
+    
+    background-color: white;
+    border-radius: 8px;
+    width: calc(50% - 10px); /* Chia 2 cột card */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.badge-hot {
+    /* QUAN TRỌNG: Bứt ra khỏi luồng, căn tọa độ theo phần tử tổ tiên gần nhất
+       có position khác static (chính là .product-card vừa set relative ở trên) */
+    position: absolute; 
+    top: -10px;         /* Đẩy trồi lên khỏi viền trên của thẻ card 10px */
+    right: -10px;       /* Đẩy lồi ra khỏi viền phải của thẻ card 10px */
+    
+    background-color: #e74c3c;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-placeholder {
+    width: 70px; height: 70px;
+    background-color: #f1f2f6; border-radius: 6px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 32px;
+}
+
+.price { color: #e74c3c; font-weight: bold; }
+
+/* =========================================
+   KHỐI GIẢ LẬP ĐỂ TEST CUỘN
+   ========================================= */
+.box-decoration {
+    height: 200px;
+    background: #e0eafc;
+    margin: 20px 0;
+    border-radius: 6px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* =========================================
+   4. FIXED SCROLL-TO-TOP BUTTON
+   ========================================= */
+.scroll-to-top {
+    position: fixed; /* Gắn chết vào khung hình trình duyệt */
+    bottom: 30px;    /* Neo cách đáy màn hình 30px */
+    right: 30px;     /* Neo cách lề phải màn hình 30px */
+    
+    width: 50px;
+    height: 50px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}

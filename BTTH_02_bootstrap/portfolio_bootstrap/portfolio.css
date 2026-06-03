@@ -1,0 +1,105 @@
+/* --- PHẦN 1: BỐ CỤC LƯỚI (GRID LAYOUT) --- */
+.portfolio-grid {
+    display: grid;
+    /* Tự động tính số cột: mỗi cột tối thiểu 300px, tối đa chiếm hết khoảng trống còn lại (1fr) */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Khoảng cách giữa các ô trong lưới */
+    gap: 1.5rem;
+}
+
+/* --- PHẦN 2: CHI TIẾT TỪNG ITEM DỰ ÁN --- */
+.portfolio-item {
+    position: relative; /* Làm gốc tọa độ cho lớp phủ (overlay) bên trong */
+    overflow: hidden;    /* Cắt bỏ phần hình ảnh thừa khi phóng to (zoom) */
+    border-radius: 12px; /* Bo góc cho khung dự án */
+}
+
+.portfolio-item img {
+    width: 100%;
+    aspect-ratio: 4/3;   /* Ép mọi hình ảnh về cùng tỉ lệ 4:3 để lưới luôn đều */
+    object-fit: cover;   /* Giữ ảnh không bị méo khi thay đổi kích thước khung */
+    transition: transform 0.4s ease; /* Chuyển động phóng to mượt mà trong 0.4 giây */
+}
+
+/* Hiệu ứng phóng to ảnh khi di chuột vào (Hover) */
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+/* --- PHẦN 3: LỚP PHỦ THÔNG TIN (OVERLAY) --- */
+.portfolio-overlay {
+    position: absolute;
+    inset: 0; /* Phủ kín item (tương đương top, left, bottom, right = 0) */
+    /* Tạo hiệu ứng đổ màu từ dưới lên: từ xám trắng nhạt sang trong suốt */
+    background: linear-gradient(
+        to top,
+        rgba(250, 250, 248, 0.95) 0%,
+        rgba(243, 244, 246, 0.6) 50%,
+        transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Đẩy nội dung chữ xuống dưới đáy */
+    padding: 1.5rem;
+    opacity: 0;                /* Mặc định ẩn lớp phủ */
+    transition: opacity 0.3s ease; /* Hiệu ứng mờ dần trong 0.3 giây */
+}
+
+/* Hiện lớp phủ khi di chuột vào item */
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+/* --- PHẦN 4: CỬA SỔ CHI TIẾT (LIGHTBOX) --- */
+.lightbox {
+    position: fixed; /* Cố định vị trí trên toàn màn hình */
+    inset: 0;
+    background: rgba(0,0,0,0.95); /* Nền đen mờ gần như tuyệt đối */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;         /* Mặc định ẩn */
+    visibility: hidden; /* Vô hiệu hóa tương tác khi đang ẩn */
+    transition: all 0.3s ease;
+    z-index: 2000;      /* Đảm bảo luôn nằm trên các thành phần khác */
+}
+
+/* Kỹ thuật CSS-only: Hiện Lightbox khi ID được gọi trên thanh địa chỉ (#target) */
+.lightbox:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+}
+
+/* --- PHẦN 5: NÚT BẤM BỘ LỌC (FILTER BUTTONS) --- */
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--color-primary); /* Viền theo màu chủ đạo */
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px; /* Tạo hình nút bo tròn (pill shape) */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Đổi màu khi hover hoặc khi nút đang được chọn (active) */
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* --- PHẦN 6: ĐIỀU CHỈNH CHO DI ĐỘNG (RESPONSIVE) --- */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        /* Trên màn hình nhỏ, ép tất cả về 1 cột duy nhất */
+        grid-template-columns: 1fr;
+    }
+}

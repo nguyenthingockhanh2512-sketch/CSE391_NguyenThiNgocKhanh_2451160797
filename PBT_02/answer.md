@@ -112,3 +112,65 @@ Dùng cho các khối nội dung trực quan độc lập (self-contained conten
 Thẻ sản phẩm (Product Card) trong E-commerce: Giống như ví dụ của đề bài, ảnh sản phẩm luôn cần đi kèm với tên và giá bán tạo thành một khối thông tin thống nhất để người dùng dễ dàng lướt xem.
 
 Biểu đồ phân tích dữ liệu: Khi bạn trình bày một biểu đồ (ví dụ: Biểu đồ thống kê quản lý chi tiêu thông minh hàng tháng) trong một bài viết, bạn sẽ cần chú thích bên dưới như "Hình 1: Tỉ lệ chi tiêu tháng 10/2026" để người đọc hiểu biểu đồ đó đang thể hiện điều gì.
+
+Câu C1:
+Lỗi 1: Dòng 1 — Thẻ <form> thiếu thuộc tính action và method để xử lý dữ liệu khi submit (vi phạm best practices).
+Sửa: <form action="#" method="POST">
+
+Lỗi 2: Dòng 2 — Input "Tên" không có <label for="...">, thẻ input bị thiếu thuộc tính id và name, vi phạm accessibility.
+Sửa: <label for="name">Tên:</label> <input type="text" id="name" name="name" required>
+
+Lỗi 3: Dòng 4 — Input "Email" chỉ dùng placeholder thay thế cho <label>, thiếu id và name, vi phạm accessibility (Screen reader không đọc được).
+Sửa: <label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="Email của bạn" required>
+
+Lỗi 4: Dòng 6 — Input "Mật khẩu" không có <label for="..."> liên kết, thiếu id và name, vi phạm accessibility.
+Sửa: <label for="pwd">Mật khẩu:</label> <input type="password" id="pwd" name="pwd" placeholder="Mật khẩu" required>
+
+Lỗi 5: Dòng 7 — Input "Nhập lại mật khẩu" không có <label for="...">, thiếu id và name, vi phạm accessibility.
+Sửa: <label for="pwd_confirm">Nhập lại mật khẩu:</label> <input type="password" id="pwd_confirm" name="pwd_confirm" placeholder="Nhập lại mật khẩu" required>
+
+Lỗi 6: Dòng 9 — Input "Phone" dùng sai kiểu dữ liệu (đang là type="text", nên dùng type="tel"), là text trần không có <label>, thiếu id và name.
+Sửa: <label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" value="0901234567" pattern="[0-9]{10}">
+
+Lỗi 7: Dòng 11 — Thẻ <select> không có <label> đi kèm, thiếu id và name. Các thẻ <option> bên trong thiếu thuộc tính value (lỗi dữ liệu khi submit)
+Sửa:
+HTML
+<label for="city">Thành phố:</label>
+<select id="city" name="city">
+    <option value="HN">Hà Nội</option>
+    <option value="HCM">TP.HCM</option>
+</select>
+Lỗi 8: Dòng 16 — Thẻ <label> chứa văn bản "Tôi đồng ý điều khoản" nhưng lại không có <input type="checkbox"> nào được đặt bên trong hoặc liên kết bằng for.
+Sửa:
+
+HTML
+<label for="agree">
+    <input type="checkbox" id="agree" name="agree" required> Tôi đồng ý điều khoản
+</label>
+
+Câu C2 (10đ) — Thiết kế chiến lược Validation
+1. Viết pattern regex cho CMND/CCCD và Số tài khoản:
+
+CMND/CCCD (đúng 12 chữ số): pattern="[0-9]{12}" (hoặc pattern="\d{12}")
+
+Số tài khoản (10-15 chữ số): pattern="[0-9]{10,15}" (hoặc pattern="\d{10,15}")
+
+2. HTML5 validation đủ an toàn cho ứng dụng ngân hàng chưa? Tại sao?
+
+Trả lời: Hoàn toàn KHÔNG đủ an toàn.
+
+Tại sao: HTML5 Validation chỉ hoạt động ở phía Frontend (trên trình duyệt của người dùng) nhằm mục đích cải thiện UX (nhắc nhở nhập đúng trước khi gửi). Kẻ gian có thể dễ dàng vượt qua các rào cản này bằng cách mở DevTools (F12) để xóa các thuộc tính required, pattern; hoặc dùng các công cụ như Postman, cURL để gửi HTTP Request trực tiếp lên Backend mà không cần thông qua giao diện web.
+
+3. Liệt kê 3 loại validation mà HTML5 KHÔNG THỂ làm được (phải dùng JavaScript/Backend):
+
+So sánh chéo 2 trường dữ liệu (Cross-field validation): Ví dụ như kiểm tra "Nhập lại mật khẩu" có khớp với "Mật khẩu" không, hoặc "Ngày kết thúc" phải lớn hơn "Ngày bắt đầu".
+
+Kiểm tra tính duy nhất/Trùng lặp với Database: HTML5 không thể biết được Email, CMND hay Username này đã được người khác đăng ký trong hệ thống ngân hàng hay chưa.
+
+Ràng buộc logic nghiệp vụ phức tạp (Business logic): Ví dụ như kiểm tra số tiền muốn chuyển đi có hợp lệ (nhỏ hơn hoặc bằng số dư khả dụng hiện tại của tài khoản) hay không.
+
+4. Nêu 2 rủi ro bảo mật nếu chỉ validate trên Frontend mà không validate Backend:
+
+Tấn công SQL Injection / XSS: Hacker có thể bypass frontend để gửi các chuỗi mã độc, script độc hại hoặc câu lệnh SQL trực tiếp vào API của backend. Nếu backend không kiểm tra lại, cơ sở dữ liệu có thể bị đánh cắp, chỉnh sửa hoặc xóa sạch.
+
+Sai lệch và hỏng dữ liệu (Data Corruption): Các dữ liệu rác, sai định dạng hoặc phi logic (ví dụ: gửi yêu cầu chuyển số tiền là số âm) có thể lọt vào hệ thống, gây lỗi trong quá trình tính toán, làm sập server hoặc nghiêm trọng nhất là thất thoát tài sản của ngân hàng.

@@ -1,0 +1,24 @@
+// 1. Mixin Responsive (Truyền tham số breakpoint)
+@mixin respond-to($breakpoint) {
+    @media (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+// 2. Mixin Flexbox căn giữa
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// 3. Mixin Đổ bóng Card
+@mixin card-shadow {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    
+    &:hover {
+        box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        transform: translateY(-5px);
+    }
+}

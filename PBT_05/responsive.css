@@ -1,0 +1,89 @@
+/* =======================================
+   1. MOBILE-FIRST BASE STYLES (< 768px)
+   Đây là CSS mặc định, load trên mọi thiết bị
+   ======================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Font size nhỏ gọn cho mobile */
+body { font-family: Arial, sans-serif; font-size: 14px; background-color: #f9f9f9;}
+
+/* HEADER & NAV */
+.header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 15px 20px; background: #2c3e50; color: white; position: relative;
+}
+.nav-menu { 
+    display: none; /* Ẩn menu ngang trên mobile */
+    flex-direction: column; width: 100%;
+    position: absolute; top: 100%; left: 0; background: #34495e;
+}
+.nav-menu a { padding: 15px; color: white; text-decoration: none; border-bottom: 1px solid #2c3e50; }
+
+/* Checkbox Hack cho Hamburger menu */
+.nav-toggle { display: none; }
+.hamburger { font-size: 24px; cursor: pointer; display: block; }
+.nav-toggle:checked ~ .nav-menu { display: flex; } /* Hiện menu khi bấm vào hamburger */
+
+/* LAYOUT MOBILE */
+.container { display: flex; flex-direction: column; padding: 15px; gap: 20px; }
+.sidebar { display: none; } /* Ẩn sidebar trên mobile */
+.ads-bar { display: none; } /* Ẩn cột ads trên mobile */
+
+/* PRODUCT GRID - Mobile (1 Cột) */
+.product-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; /* ĐIỂM QUAN TRỌNG: 1 cột cho mobile */
+    gap: 16px; 
+}
+
+.card { background: white; border: 1px solid #ddd; padding: 10px; border-radius: 8px; text-align: center; }
+/* ĐIỂM QUAN TRỌNG: Ảnh responsive không tràn khỏi card */
+.card img { max-width: 100%; height: auto; border-radius: 4px; }
+
+.footer { text-align: center; padding: 20px; background: #2c3e50; color: white; }
+
+/* =======================================
+   2. TABLET BREAKPOINT (≥ 768px)
+   ======================================= */
+@media (min-width: 768px) {
+    body { font-size: 16px; } /* Tăng font size */
+
+    /* Hiện menu ngang, ẩn hamburger */
+    .hamburger { display: none; }
+    .nav-menu { 
+        display: flex; flex-direction: row; position: static; 
+        background: transparent; width: auto; 
+    }
+    .nav-menu a { border-bottom: none; padding: 0 15px; }
+    
+    /* Sidebar hiện dạng ngang */
+    .sidebar { display: block; background: #ecf0f1; padding: 15px; border-radius: 8px; }
+    .sidebar ul { display: flex; gap: 20px; list-style: none; }
+
+    /* Product Grid - Tablet (2 Cột) */
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* =======================================
+   3. DESKTOP BREAKPOINT (≥ 1024px)
+   ======================================= */
+@media (min-width: 1024px) {
+    /* Chuyển container thành layout ngang (Row) */
+    .container { flex-direction: row; align-items: flex-start; }
+
+    /* Sidebar quay lại dạng dọc, chiếm cố định 250px */
+    .sidebar { flex: 0 0 250px; }
+    .sidebar ul { flex-direction: column; }
+
+    /* Main content chiếm phần còn lại */
+    .product-grid { 
+        flex: 1; 
+        grid-template-columns: repeat(4, 1fr); /* Desktop: 4 Cột */
+    }
+
+    /* Hiện Ads Bar bên phải */
+    .ads-bar { 
+        display: block; flex: 0 0 200px; 
+        background: #f1c40f; padding: 20px; border-radius: 8px; height: 300px;
+    }
+}

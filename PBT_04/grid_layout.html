@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài B3 - Grid Layout E-Commerce</title>
+    <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         VÙNG CHỨA LƯỚI TỔNG THỂ (MACRO LAYOUT)
+         ========================================== -->
+    <div class="layout-wrapper">
+        
+        <!-- HEADER -->
+        <header class="header">
+            <h2>🛒 GRIDMART</h2>
+            <nav>Trang Chủ | Sản Phẩm | Khuyến Mãi</nav>
+        </header>
+
+        <!-- HERO BANNER -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>SIÊU SALE CÔNG NGHỆ</h2>
+                <p>Giảm giá lên đến 50% cho tất cả thiết bị điện tử</p>
+            </div>
+        </section>
+
+        <!-- SIDEBAR (CỘT TRÁI) -->
+        <aside class="sidebar">
+            <h3>Bộ Lọc Sản Phẩm</h3>
+            <div class="filter-group">
+                <h4>Danh mục</h4>
+                <label><input type="checkbox" checked> Điện thoại</label><br>
+                <label><input type="checkbox"> Laptop</label><br>
+                <label><input type="checkbox" checked> Tai nghe</label>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT (CỘT GIỮA) -->
+        <main class="main-content">
+            <h3>Sản Phẩm Nổi Bật</h3>
+            
+            <!-- ĐÂY LÀ LƯỚI CON (SUB-GRID) ĐỂ XẾP CARD -->
+            <div class="product-grid">
+                
+                <!-- BONUS NÂNG CAO: Card này sẽ chiếm 2 cột -->
+                <div class="card card-feature">
+                    <div class="feat-icon">💻🔥</div>
+                    <div class="feat-info">
+                        <h4>Laptop Gaming Xtreme 2026</h4>
+                        <p class="price">45.000.000 đ</p>
+                    </div>
+                </div>
+                
+                <!-- Các Card bình thường (chiếm 1 cột) -->
+                <div class="card">
+                    <div class="card-img">📱</div>
+                    <h4>Điện thoại Z Fold</h4>
+                    <p class="price">32.000.000 đ</p>
+                </div>
+                <div class="card">
+                    <div class="card-img">🎧</div>
+                    <h4>Tai nghe Noise Cancelling</h4>
+                    <p class="price">5.500.000 đ</p>
+                </div>
+                <div class="card">
+                    <div class="card-img">⌚</div>
+                    <h4>Đồng hồ SmartWatch 6</h4>
+                    <p class="price">8.900.000 đ</p>
+                </div>
+                <div class="card">
+                    <div class="card-img">⌨️</div>
+                    <h4>Bàn phím cơ RGB</h4>
+                    <p class="price">2.100.000 đ</p>
+                </div>
+                <div class="card">
+                    <div class="card-img">🖱️</div>
+                    <h4>Chuột Ergonomic</h4>
+                    <p class="price">1.200.000 đ</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- ADS BANNER (CỘT PHẢI) -->
+        <aside class="ads">
+            <div class="ads-banner">
+                <h4>QUẢNG CÁO</h4>
+                <p>Mua 1 Tặng 1<br>áp dụng ngay hôm nay!</p>
+            </div>
+        </aside>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>© 2026 GRIDMART E-Commerce.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

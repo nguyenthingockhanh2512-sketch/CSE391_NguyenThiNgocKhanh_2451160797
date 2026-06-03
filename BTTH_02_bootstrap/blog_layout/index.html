@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="blog" class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Main Content (8 columns) -->
+ <!--CỘT TRÁi--><div class="col-lg-8">
+                <!-- Blog Post Card 1 -->
+                 <!--card: Tạo khung trắng, viền mảnh chứa nội dung-->
+                  <article class="card mb-4"><!-- mb-4: Margin bottom mức 4 để các bài viết cách nhau ra -->
+                    <img src="image/periodTracker.png" class="card-img-top" alt="Shop Brand Bag">
+                    <div class="card-body p-4"><!--Tạo khoảng cách từ nội dung đến viền card-->
+
+                        <!-- [Badge] Nhãn nhỏ để phân loại công nghệ -->
+                        <span class="badge bg-primary">HTML + CSS + JS</span>
+                        <h3 class="card-title mt-2">Period Tracker</h3>
+                        <p class="card-text text-muted"> <!--text-muted: tạo nội dung phụ-->
+                            <small>By Author • 5 min read</small>
+                        </p>
+                        <p class="card-text">This is a page for preiod tracker.</p>
+                        <a href="https://chautfifth.com/en/collections/tui-xach?srsltid=AfmBOoomemU9KObIxr9MurN4C1sv8u34JB1-qnAIZ5YCvx6_Av2VxhGY" target = "_blank" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </article>
+                <article class="card mb-4">
+                    <img src="image/smartBudget.png" class="card-img-top" alt="Smart Budget website">
+                    <div class="card-body">
+                        <span class="badge bg-primary">React + Node.js</span>
+                        <h3 class="card-title mt-2">Smart Budget website</h3>
+                        <p class="card-text text-muted">
+                            <small>By 5 members in 66HTTT1 • Apil 15, 2026 • 5 min read</small>
+                        </p>
+                        <p class="card-text">This is a smart expense management system that uses Machine Learning algorithms to provide personal financial reports and tips on saving behavior. </p>
+                        <a href="https://docs.google.com/document/d/1sQ3AVVPWI0Y5739yUym0AUyhlxCyHQ2A_2xoFNtuoE8/edit?tab=t.0#heading=h.dvpif7z5flh4" target = "_blank" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </article>
+                <!-- Add 2 more blog posts -->
+                <!-- Blog Post Card 2 -->
+                 <article class="card mb-4">
+                    <img src="image/kidLearning.png" class="card-img-top" alt="Kid Learning Mobile">
+                    <div class="card-body">
+                        <span class="badge bg-primary">HTML + CSS + JS</span>
+                        <h3 class="card-title mt-2">Kid Learning Mobile</h3>
+                        <p class="card-text text-muted">
+                            <small>By Author • 5 min read</small>
+                        </p>
+                        <p class="card-text">This is a program that supplements children's foreign language knowledge through games.</p>
+                        <a href="https://www.e-learningforkids.org/" target = "_blank" class="btn btn-outline-primary">Read More</a>
+                    </div>
+                </article>
+                <!-- PHẦN BÌNH LUẬN (Đặt trong col-lg-8) -->
+            <div class="mt-5 p-4 bg-white rounded shadow-sm">
+                <h4 class="mb-4 fw-bold">Comments (3)</h4>
+
+                <!-- 1. Form để lại bình luận -->
+                <div class="card mb-5 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Leave a Comment</h5>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="email@example.com">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Comment</label>
+                                <textarea class="form-control" rows="3" placeholder="Write your message here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary px-4">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2. Hiển thị các bình luận đã có -->
+                <div class="comments-list">
+                    
+                    <!-- Bình luận Cha 1 -->
+                    <div class="comment-item mb-4">
+                        <div class="d-flex">
+                            <!-- Avatar -->
+                            <img src="image/ly.jpg" class="rounded-circle me-3 avatar-main" alt="Avatar">
+                            
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="mb-0 fw-bold">Khánh Ly</h6>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                                <p class="text-secondary">Mày cop code ở đâu thế?</p>
+                                <button class="btn btn-sm btn-link p-0 text-decoration-none fw-bold">
+                                    <i class="bi bi-reply-fill"></i> Reply
+                                </button>
+
+                                <!-- Bình luận Con (Reply) -->
+                                <div class="comment-reply mt-3 ps-3 border-start border-3">
+                                    <div class="d-flex">
+                                        <img src="image/khanh.png" class="rounded-circle me-3 avatar-reply" alt="Avatar">
+                                        <div class="flex-grow-1"><!--Giúp phần nội dung chiến hết phần bên phải avt-->
+                                            <div class="d-flex justify-content-between align-items-center mb-1"><!--d-flex: giúp avt 1 bên, cmt 1 bên-->
+                                                <h6 class="mb-0 fw-bold">Ngọc Khánh (Author)</h6>
+                                                <small class="text-muted">1 hour ago</small>
+                                            </div>
+                                            <p class="text-secondary mb-1">Cảm ơn bạn nhé!.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="comment-reply mt-3 ps-3 border-start border-3">
+                                    <div class="d-flex">
+                                        <img src="image/Nkhanh.png" class="rounded-circle me-3 avatar-reply" alt="Avatar">
+                                        <div class="flex-grow-1"><!--Giúp phần nội dung chiến hết phần bên phải avt-->
+                                            <div class="d-flex justify-content-between align-items-center mb-1"><!--d-flex: giúp avt 1 bên, cmt 1 bên-->
+                                                <h6 class="mb-0 fw-bold">Ngọc Khén</h6>
+                                                <small class="text-muted">1 hour ago</small>
+                                            </div>
+                                            <p class="text-secondary mb-1">T dùng gemini pro.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            </div>
+
+            <!-- Sidebar (4 columns) -->
+<!--CỘT PHẢI--><div class="col-lg-4">
+                <!-- Sticky sidebar: Dính lại khi cuộn trang -->
+                <div class="sticky-top pt-4" style="top: 20px; z-index: 10;">
+                    
+                    <!-- 1. Search Widget -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Search</h5>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <button class="btn btn-success" type="button">Go</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Categories Widget -->
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-header bg-white border-bottom-0 pt-3">
+                            <h5 class="mb-0">Categories</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Machine Learning
+                                <span class="badge bg-primary rounded-pill">1</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Web Development
+                                <span class="badge bg-primary rounded-pill">1</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Mobile Games
+                                <span class="badge bg-primary rounded-pill">2</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. Recent Posts (Các dự án khác) -->
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-header bg-white border-bottom-0 pt-3">
+                            <h5 class="mb-0">Recent Projects</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex mb-3 align-items-center">
+                                <img src="image/smartBudget.png" class="rounded me-3" width="50" height="50" style="object-fit: cover;" alt="thumb">
+                                <div>
+                                    <h6 class="mb-0"><a href="#" class="text-decoration-none text-dark small fw-bold">Smart Budget</a></h6>
+                                    <small class="text-muted">April 2026</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <img src="image/kidLearning.png" class="rounded me-3" width="50" height="50" style="object-fit: cover;" alt="thumb">
+                                <div>
+                                    <h6 class="mb-0"><a href="#" class="text-decoration-none text-dark small fw-bold">Kid Learning</a></h6>
+                                    <small class="text-muted">March 2026</small>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <img src="image/healthCare.png" class="rounded me-3" width="50" height="50" style="object-fit: cover;" alt="thumb">
+                                <div>
+                                    <h6 class="mb-0"><a href="#" class="text-decoration-none text-dark small fw-bold">Health Care</a></h6>
+                                    <small class="text-muted">March 2024</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 4. Tags Cloud -->
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-header bg-white border-bottom-0 bg-primary pt-3">
+                            <h5 class="mb-0">Skills & Tech</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- flex-wrap: Nếu có quá nhiều tag, chúng sẽ tự động xuống dòng thay vì tràn ra ngoài -->
+                            <!-- gap-2: Tạo khoảng cách đều 0.5rem giữa các tag -->
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-secondary text-white">React</span>
+                                <span class="badge bg-secondary text-white">Node.js</span>
+                                <span class="badge bg-secondary text-white">Python</span>
+                                <span class="badge bg-secondary text-white">HTML/CSS</span>
+                                <span class="badge bg-secondary text-white">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Link Bootstrap JS (để các hiệu ứng nút bấm chạy được) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
